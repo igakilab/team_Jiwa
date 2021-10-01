@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Enemy : Character
 {
@@ -11,6 +12,8 @@ public class Enemy : Character
 
     Slider HPvar; /*ëÃóÕÉoÅ[*/
     Text NameText;
+
+    private NavMeshAgent agent;
 
 
     public override void attack()
@@ -28,19 +31,22 @@ public class Enemy : Character
 
     private void moveToPlayer()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector3 PlayerPostion;
-        Vector3 EnemyPostion;
+        GameObject target = GameObject.FindGameObjectWithTag("Player");
 
-        PlayerPostion = player.transform.position;
-        EnemyPostion = this.transform.position;
+        if(target)
+        {
+            agent.destination = target.transform.position;
+        }
 
-        
+
     }
 
     void Start()
     {
         hp = enemyStatus.getMaxHP();/*hpÇ…maxHPÇë„ì¸*/
+        agent = GetComponent<NavMeshAgent>();
+
+        
 
         HPvar = transform.Find("Canvas/HPBar").gameObject.GetComponent<Slider>();
         NameText = transform.Find("Canvas/Name").gameObject.GetComponent<Text>();
