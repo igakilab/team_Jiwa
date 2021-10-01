@@ -13,8 +13,6 @@ public class Enemy : Character
     Slider HPvar; /*‘Ì—Íƒo[*/
     Text NameText;
 
-    private NavMeshAgent agent;
-
 
     public override void attack()
     {
@@ -31,23 +29,12 @@ public class Enemy : Character
 
     private void moveToPlayer()
     {
-        GameObject target = GameObject.FindGameObjectWithTag("Player");
-
-        if(target)
-        {
-            agent.destination = target.transform.position;
-        }
-
 
     }
 
     void Start()
     {
         hp = enemyStatus.getMaxHP();/*hp‚ÉmaxHP‚ğ‘ã“ü*/
-        agent = GetComponent<NavMeshAgent>();
-
-        
-
         HPvar = transform.Find("Canvas/HPBar").gameObject.GetComponent<Slider>();
         NameText = transform.Find("Canvas/Name").gameObject.GetComponent<Text>();
     }

@@ -1592,6 +1592,7 @@ GameObject:
   - component: {fileID: 2132972697}
   - component: {fileID: 2132972696}
   - component: {fileID: 2132972698}
+  - component: {fileID: 2132972699}
   m_Layer: 0
   m_Name: ground
   m_TagString: ground
@@ -2431,6 +2432,19 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &2132972699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132972694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363584b0cb85c9e4181e6d1f1ee550ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  area: 0
 --- !u!1001 &5825094825402649903
 PrefabInstance:
   m_ObjectHideFlags: 0
