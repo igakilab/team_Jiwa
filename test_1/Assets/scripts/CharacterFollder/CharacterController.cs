@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public abstract class CharacterController : MonoBehaviour
 {
 
     protected Rigidbody2D rb2d = null;
@@ -10,12 +10,12 @@ public class CharacterController : MonoBehaviour
     protected SpriteRenderer spRen;
     public groundCheck ground;
 
-    //攻撃当たり判定
-    private Transform checkAttack;
-    private float attackRadius=0.7f;
-
     public float jumpPower; //ジャンプ力
     public float speed; //移動スピード
+
+    //攻撃当たり判定
+    protected Transform checkAttack;
+    protected float attackRadius = 0.7f;
 
     bool damage=false;//ダメージが与えられるか
 
@@ -99,31 +99,7 @@ public class CharacterController : MonoBehaviour
         rb2d.velocity = new Vector2(xSpeed, rb2d.velocity.y);
     }
 
-    protected void attack()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            //ジャンプ以外
-            if(!anim.GetBool("jump"))
-            {
-                anim.SetBool("attack", true); //アタックアニメーション
-
-                
-                checkAttack = transform.Find("checkAttack").GetComponent<Transform>(); //攻撃判定オブジェクトを子オブジェクトより探す
-                Collider2D[] hitEnemys = Physics2D.OverlapCircleAll(checkAttack.position,attackRadius,LayerMask.GetMask("Enemy"));
-
-                //攻撃iが当たった全ての敵に対して
-                foreach(Collider2D hitEnemy in hitEnemys)
-                {
-                    hitEnemy.gameObject.GetComponent<Enemy>().onDamage(1); //ダメージを与える
-
-                }
-                
-                
-            }
-             
-        }
-    }
+    protected abstract void attack();
 
 
     protected void death()
@@ -132,6 +108,14 @@ public class CharacterController : MonoBehaviour
         {
             anim.SetBool("death", true);
         }
+    }
+
+   protected virtual void Start()
+    {
+        //コンポーネント
+        rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        spRen = GetComponent<SpriteRenderer>();
     }
 
 
