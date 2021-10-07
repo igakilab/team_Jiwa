@@ -15,6 +15,8 @@ public class Enemy : Character
 
     Rigidbody2D rb2d;
 
+    searchPlayer searchPlayer;
+
 
     public override void attack()
     {
@@ -29,23 +31,23 @@ public class Enemy : Character
 
     }
 
-    private void moveToPlayer()
+    private void chasePlayer()
     {
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
         float speed=0;
         Vector3 destination = Player.transform.position; //敵の目的地
         Vector3 direction = (destination - transform.position).normalized; //プレイヤーの方向
 
-        Debug.Log(string.Format("方向{0:#}",direction.x));
+        //Debug.Log(string.Format("方向{0:#}",direction.x));
         // Debug.Log(string.Format("{0:#},{1:#},{2:#}",Player.transform.position.x, Player.transform.position.y, Player.transform.position.z));
 
         if (direction.x>0)
         {
-            speed = 7f;
+            speed = 3f;
         }
         else if(direction.x<0)
         {
-            speed = -7f;
+            speed = -3f;
         }
 
 
@@ -58,6 +60,7 @@ public class Enemy : Character
         hp = enemyStatus.getMaxHP();/*hpにmaxHPを代入*/
         HPvar = transform.Find("Canvas/HPBar").gameObject.GetComponent<Slider>();
         NameText = transform.Find("Canvas/Name").gameObject.GetComponent<Text>();
+        searchPlayer = transform.Find("SearchArea").gameObject.GetComponent<searchPlayer>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -68,6 +71,10 @@ public class Enemy : Character
 
         death();
 
-        moveToPlayer();
+        if(searchPlayer.getIsPlayer())
+        {
+            chasePlayer();
+        }
+        
     }
 }

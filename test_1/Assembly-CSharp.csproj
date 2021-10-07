@@ -63,6 +63,7 @@
     <Compile Include="Assets\scripts\CharacterFollder\Character.cs" />
     <Compile Include="Assets\scripts\CharacterFollder\CharacterController.cs" />
     <Compile Include="Assets\StatusData\CharacterStatus.cs" />
+    <Compile Include="Assets\searchPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\character\Player\Warrior free set\License.txt" />
