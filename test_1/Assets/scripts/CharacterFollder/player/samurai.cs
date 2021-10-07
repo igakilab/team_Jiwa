@@ -5,6 +5,11 @@ using UnityEngine;
 public class samurai : CharacterController
 {
 
+    protected override void attack()
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
