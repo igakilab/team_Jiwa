@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 442}
   m_MaxSize: {x: 22006, y: 10021}
   vertical: 0
-  controlID: 160
+  controlID: 136
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 442}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 62
+  controlID: 137
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -328,10 +328,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 8
-    y: 81
-    width: 895
-    height: 465
+    x: 0
+    y: 73
+    width: 903
+    height: 473
   m_ViewDataDictionary: {fileID: 0}
   m_ViewTransforms:
     m_KeySerializationHelper:
@@ -473,9 +473,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 3efbffff40fbffff
+      m_SelectedIDs: e0f5ffff
+      m_LastClickedID: -2592
+      m_ExpandedIDs: 40fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: map
@@ -574,22 +574,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/scripts/CharacterFollder
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/scripts/CharacterFollder
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "E:\\UserData\\Documents\\\u5927\u5B66\u8CC7\u6599\\\u30BC\u30DF\\team_Jiwa\\test_1"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 20460000
-    m_LastClickedID: 17952
-    m_ExpandedIDs: 000000001c4600001e4600002046000000ca9a3b
+    m_SelectedIDs: 96570000
+    m_LastClickedID: 22422
+    m_ExpandedIDs: 000000001c4600001e46000020460000344600009657000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -648,18 +648,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: f4570000b24c0000784f0000b6420000aa420000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: CharacterController
+      m_OriginalName: CharacterController
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 5178
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_CreateAssetUtility:
@@ -798,9 +798,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.6107428, y: -1.1529144, z: -7.175237}
+    m_Target: {x: -0.5258904, y: -1.4894847, z: -7.9648337}
     speed: 2
-    m_Value: {x: -2.6107428, y: -1.1529144, z: -7.175237}
+    m_Value: {x: -0.5258904, y: -1.4894847, z: -7.9648337}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -851,9 +851,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 4.679148
+    m_Target: 2.3906636
     speed: 2
-    m_Value: 4.679148
+    m_Value: 2.3906636
   m_Ortho:
     m_Target: 1
     speed: 2

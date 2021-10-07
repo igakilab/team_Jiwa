@@ -110,6 +110,11 @@ public abstract class CharacterController : MonoBehaviour
         }
     }
 
+    protected void getItem()
+    {
+
+    }
+
    protected virtual void Start()
     {
         //コンポーネント
@@ -117,6 +122,8 @@ public abstract class CharacterController : MonoBehaviour
         anim = GetComponent<Animator>();
         spRen = GetComponent<SpriteRenderer>();
     }
+
+    
 
 
 }
