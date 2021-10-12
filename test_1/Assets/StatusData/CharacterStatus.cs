@@ -13,10 +13,22 @@ public class CharacterStatus : ScriptableObject
     [SerializeField]
     private int def; //ñhå‰óÕ
 
+    private int HP; //åªç›ÇÃHP;
+
 
     public int getMaxHP()
     {
         return maxHP;
+    }
+
+    public int getHP()
+    {
+        return HP;
+    }
+
+    public void setHP(int hp)
+    {
+        this.HP = hp;
     }
 
     public int getAtk()

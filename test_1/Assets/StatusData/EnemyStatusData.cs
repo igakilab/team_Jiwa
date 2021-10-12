@@ -6,7 +6,11 @@ using UnityEngine;
 public class EnemyStatusData : CharacterStatus
 {
     [SerializeField]
+    private string EnemyID;
+    [SerializeField]
     private string name; //–¼‘O
+    [SerializeField]
+    private float speed; /*r•q«*/
     [SerializeField]
     private int exp;//ŒoŒ±’l
 
@@ -18,5 +22,9 @@ public class EnemyStatusData : CharacterStatus
     public string getName()
     {
         return this.name;
+    }
+    public float getSpeed()
+    {
+        return this.speed;
     }
 }
