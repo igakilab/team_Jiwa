@@ -82,7 +82,6 @@ public class Enemy : Character
         HPvar = transform.Find("Canvas/HPBar").gameObject.GetComponent<Slider>();
         NameText = transform.Find("Canvas/Name").gameObject.GetComponent<Text>();
         searchPlayer = transform.Find("SearchArea").gameObject.GetComponent<searchPlayer>();
-        damageText = transform.Find("Canvas/damageText").gameObject.GetComponent<Text>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 

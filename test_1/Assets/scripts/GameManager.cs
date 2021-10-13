@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player"); //プレイヤーオブジェクトを探す
 
-        PlayerHPVar = GameObject.Find("UI/PlayerHPvar").GetComponent<Slider>();
-        PlayerHPText = GameObject.Find("UI/PlayerHPText").GetComponent<Text>();
+        PlayerHPVar = GameObject.Find("UI/PlayerHP/HPvar").GetComponent<Slider>();
+        PlayerHPText = GameObject.Find("UI/PlayerHP/HPText").GetComponent<Text>();
         PlayerStatus = Player.GetComponent<Warrior>().status; //wariorを参照
         
     }
