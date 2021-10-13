@@ -27,6 +27,13 @@ public class Warrior : PlayerController
 
     }
 
+    private void testDamage()
+    {
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            onDamage(10);
+        }
+    }
     // Start is called before the first frame update
    protected override void Start()
     {
@@ -40,5 +47,6 @@ public class Warrior : PlayerController
 
         base.Update();
 
+        testDamage();
     }
 }

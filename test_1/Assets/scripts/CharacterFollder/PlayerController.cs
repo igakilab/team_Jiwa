@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class PlayerController : MonoBehaviour
 {
 
-    public PlayerStatus status; //ステータス
+    public PlayerStatusData status; //ステータス
 
     // <コンポーネント>
     protected Rigidbody2D rb2d = null;
@@ -103,9 +103,10 @@ public abstract class PlayerController : MonoBehaviour
 
     protected void death()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if(status.getHP()<0)
         {
-            anim.SetBool("death", true);
+            status.setHP(0);
+            anim.SetBool("death",true);
         }
     }
 

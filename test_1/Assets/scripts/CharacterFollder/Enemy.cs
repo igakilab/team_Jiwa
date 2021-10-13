@@ -20,7 +20,7 @@ public class Enemy : Character
     searchPlayer searchPlayer;
  
 
-    private void UICtrl()
+    private void EnemyUICtrl()
     {
         HPvar.value = (float)enemyStatus.getHP() / (float)enemyStatus.getMaxHP(); //HPバーの更新
         NameText.text = enemyStatus.getName();//名前
@@ -89,7 +89,7 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        UICtrl();
+        EnemyUICtrl();
 
         death();
 

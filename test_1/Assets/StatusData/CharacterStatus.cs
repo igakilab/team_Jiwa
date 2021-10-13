@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharacterStatus : ScriptableObject
 {
-    // Start is called before the first frame update
 
     [SerializeField]
     private int maxHP;
