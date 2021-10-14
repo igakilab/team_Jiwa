@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class samurai : CharacterController
+public class samurai : PlayerController
 {
 
     protected override void attack()
@@ -10,20 +10,14 @@ public class samurai : CharacterController
         throw new System.NotImplementedException();
     }
 
-    private void Start()
+    protected override void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        spRen = GetComponent<SpriteRenderer>();
+        base.Start(); 
     }
 
-    void Update()
+    protected override void Update()
     {
-            move();
-
-            Jump();
-
-            attack();
+        base.Update();
 
     }
 

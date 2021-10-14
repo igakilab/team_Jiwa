@@ -24,7 +24,7 @@ public class groundCheck : MonoBehaviour
     {
         if(collision.tag==groundTag)
         {
-            Debug.Log("ê⁄ín");
+            //Debug.Log("ê⁄ín");
             isGround = true;
             anim.SetBool("jump", false);
             anim.SetBool("fall", false);
@@ -36,7 +36,7 @@ public class groundCheck : MonoBehaviour
     {
         if (collision.tag == groundTag)
         {
-            Debug.Log("ó£ÇÍÇ‹ÇµÇΩ");
+            //Debug.Log("ó£ÇÍÇ‹ÇµÇΩ");
             isGround = false;
         }
 

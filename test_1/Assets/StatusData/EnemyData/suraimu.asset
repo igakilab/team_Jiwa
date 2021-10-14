@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe784dd2daa8d34cb067ed379312797, type: 3}
   m_Name: suraimu
   m_EditorClassIdentifier: 
-  name: "\u30B9\u30E9\u30A4\u30E0"
   maxHP: 30
   atk: 0
   def: 0
+  EnemyID: 
+  name: "\u30B9\u30E9\u30A4\u30E0"
+  speed: 2
+  exp: 0
