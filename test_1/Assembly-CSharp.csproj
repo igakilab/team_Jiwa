@@ -53,23 +53,24 @@
     <UnityVersion>2020.3.18f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\scripts\GameManager.cs" />
-    <Compile Include="Assets\scripts\CharacterFollder\player\Warrior\Warrior.cs" />
+    <Compile Include="Assets\scripts\Game\GameManager.cs" />
+    <Compile Include="Assets\scripts\Game\CharacterFollder\player\Warrior\Warrior.cs" />
     <Compile Include="Assets\StatusData\EnemyStatusData.cs" />
-    <Compile Include="Assets\scripts\CharacterFollder\groundCheck.cs" />
-    <Compile Include="Assets\scripts\CharacterFollder\ContinuityAttack.cs" />
-    <Compile Include="Assets\searchPlayer.cs" />
-    <Compile Include="Assets\scripts\CharacterFollder\player\samurai.cs" />
-    <Compile Include="Assets\scripts\playerManager.cs" />
-    <Compile Include="Assets\StatusData\Player\PlayerStatusData.cs" />
-    <Compile Include="Assets\scripts\CharacterFollder\player\PlayerStatus.cs" />
-    <Compile Include="Assets\scripts\CharacterFollder\Enemy.cs" />
-    <Compile Include="Assets\scripts\CharacterFollder\Character.cs" />
-    <Compile Include="Assets\scripts\CharacterFollder\PlayerController.cs" />
-    <Compile Include="Assets\StatusData\CharacterStatus.cs" />
     <Compile Include="Assets\Free UI build package\Script\Slide.cs" />
+    <Compile Include="Assets\scripts\Game\CharacterFollder\groundCheck.cs" />
+    <Compile Include="Assets\scripts\Game\CharacterFollder\ContinuityAttack.cs" />
     <Compile Include="Assets\Free UI build package\Script\Togglescript.cs" />
     <Compile Include="Assets\Beautiful Progress Bar Free - CYKO\Scripts\SliderScripts.cs" />
+    <Compile Include="Assets\searchPlayer.cs" />
+    <Compile Include="Assets\scripts\Game\CharacterFollder\player\samurai.cs" />
+    <Compile Include="Assets\scripts\Game\playerManager.cs" />
+    <Compile Include="Assets\StatusData\Player\PlayerStatusData.cs" />
+    <Compile Include="Assets\scripts\Game\CharacterFollder\player\PlayerStatus.cs" />
+    <Compile Include="Assets\scripts\Game\CharacterFollder\Enemy.cs" />
+    <Compile Include="Assets\scripts\Game\CharacterFollder\Character.cs" />
+    <Compile Include="Assets\scripts\Game\CharacterFollder\PlayerController.cs" />
+    <Compile Include="Assets\StatusData\CharacterStatus.cs" />
+    <Compile Include="Assets\scripts\Title\StartGameButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\character\Player\Warrior free set\License.txt" />
