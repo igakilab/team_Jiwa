@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class Warrior : PlayerController
 {
-
     protected override void attack()
     {
         //ジャンプ以外
         if (!anim.GetBool("jump"))
         {
             anim.SetBool("attack", true); //アタックアニメーション
+        }
 
+    }
 
-            Collider2D[] hitEnemys = Physics2D.OverlapCircleAll(checkAttack.position, attackRadius, LayerMask.GetMask("Enemy"));
+    //攻撃アニメーション時に呼び出される
+    public void attackCollisionDetection()
+    {
+        Collider2D[] hitEnemys = Physics2D.OverlapCircleAll(checkAttack.position, attackRadius, LayerMask.GetMask("Enemy"));
 
-            //攻撃iが当たった全ての敵に対して
-            foreach (Collider2D hitEnemy in hitEnemys)
-            {
-                hitEnemy.gameObject.GetComponent<Enemy>().onDamage(status.getAtk()); //ダメージを与える
-
-            }
-
+        //攻撃iが当たった全ての敵に対して
+        foreach (Collider2D hitEnemy in hitEnemys)
+        {
+            hitEnemy.gameObject.GetComponent<Enemy>().onDamage(status.getAtk()); //ダメージを与える
 
         }
 
@@ -34,6 +35,7 @@ public class Warrior : PlayerController
             onDamage(10);
         }
     }
+
     // Start is called before the first frame update
    protected override void Start()
     {
