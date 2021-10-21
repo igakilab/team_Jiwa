@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance = null;
-    Slider PlayerHPVar;
+    Slider PlayerHPVar; //ƒvƒŒƒCƒ„[HPvar 
     Text PlayerHPText;
+    Text TimerText;
 
     private GameObject Player;
     PlayerStatusData PlayerStatus;
