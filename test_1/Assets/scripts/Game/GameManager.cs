@@ -7,18 +7,34 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance = null;
+    public float totalTimer;
+
     Slider PlayerHPVar; //プレイヤーHPvar 
     Text PlayerHPText;
-    Text TimerText;
+    Text TimerText; //タイマーテキスト
 
-    private GameObject Player;
-    PlayerStatusData PlayerStatus;
-    
 
-    private void UICtrl()
+    private GameObject Player; //プレイヤーオブジェクト
+    PlayerStatusData PlayerStatus; //プレイヤーステータスを参照
+
+    private void Timer()
+    {
+        int seconds;
+        totalTimer -= Time.deltaTime;
+        seconds = (int)totalTimer;
+        TimerText.text = seconds.ToString();
+    }
+
+    private void PlayerHPonUI()
     {
         PlayerHPText.text = PlayerStatus.getHP().ToString(); //プレイヤーの体力を随時更新
         PlayerHPVar.value = (float)PlayerStatus.getHP() / (float)PlayerStatus.getMaxHP();
+    }
+
+    private void UICtrl()
+    {
+        PlayerHPonUI();
+        //Timer();
     }
 
     private void Awake()

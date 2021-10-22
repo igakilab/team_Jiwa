@@ -8,10 +8,13 @@ public class Button : MonoBehaviour
 {
 
     private GameObject stageButtons;
+    private GameObject StartButton;
     
     public void onStartButtonClick()
     {
-        //stageButtons.SetActive(true);
+        stageButtons.SetActive(true);
+        StartButton.SetActive(false);
+        
     }
 
     public void onStageButton(int stageNum)
@@ -20,6 +23,7 @@ public class Button : MonoBehaviour
         {
             case 1:
                 Debug.Log("ステージ1");
+                SceneManager.LoadScene("GameScene");
                 break;
             case 2:
                 Debug.Log("ステージ2");
@@ -33,6 +37,10 @@ public class Button : MonoBehaviour
 
     void Start()
     {
+        
         stageButtons = GameObject.Find("StageButtons");
+        StartButton = GameObject.Find("StartButton");
+
+        stageButtons.SetActive(false);
     }
 }
