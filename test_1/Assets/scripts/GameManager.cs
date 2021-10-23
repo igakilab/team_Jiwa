@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     Slider PlayerHPVar;
     Text PlayerHPText;
 
+    public float starttimer;
+
     private GameObject Player;
     PlayerStatusData PlayerStatus;
     
