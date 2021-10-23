@@ -75,6 +75,7 @@
   <ItemGroup>
     <None Include="Assets\character\Player\Warrior free set\License.txt" />
     <None Include="Assets\character\Player\Martial Hero\License.txt" />
+    <None Include="Assets\Medieval_pixel_art_asset_FREE\pixel_snapping_README.txt" />
     <None Include="Assets\character\Player\Warrior free set\Contact.txt" />
     <None Include="Assets\Nature_pixel_art_assets\pixel_snapping_README.txt" />
   </ItemGroup>
