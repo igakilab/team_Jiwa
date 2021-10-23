@@ -9,6 +9,7 @@ public class Warrior : PlayerController
         //ジャンプ以外
         if (!anim.GetBool("jump"))
         {
+            messageLog.enqueueMessage("攻撃！");
             anim.SetBool("attack", true); //アタックアニメーション
         }
 
@@ -22,7 +23,9 @@ public class Warrior : PlayerController
         //攻撃iが当たった全ての敵に対して
         foreach (Collider2D hitEnemy in hitEnemys)
         {
-            hitEnemy.gameObject.GetComponent<Enemy>().onDamage(status.getAtk()); //ダメージを与える
+            int addDamage;
+            addDamage = status.getAtk();
+            hitEnemy.gameObject.GetComponent<Enemy>().onDamage(addDamage); //ダメージを与える
 
         }
 
