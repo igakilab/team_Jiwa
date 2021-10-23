@@ -63,6 +63,7 @@
     <Compile Include="Assets\Beautiful Progress Bar Free - CYKO\Scripts\SliderScripts.cs" />
     <Compile Include="Assets\searchPlayer.cs" />
     <Compile Include="Assets\scripts\CharacterFollder\player\samurai.cs" />
+    <Compile Include="Assets\scripts\messageLogController.cs" />
     <Compile Include="Assets\scripts\playerManager.cs" />
     <Compile Include="Assets\StatusData\Player\PlayerStatusData.cs" />
     <Compile Include="Assets\scripts\CharacterFollder\player\PlayerStatus.cs" />
@@ -70,12 +71,12 @@
     <Compile Include="Assets\scripts\CharacterFollder\Character.cs" />
     <Compile Include="Assets\scripts\CharacterFollder\PlayerController.cs" />
     <Compile Include="Assets\StatusData\CharacterStatus.cs" />
-    <Compile Include="Assets\scripts\messageLogController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\character\Player\Warrior free set\License.txt" />
     <None Include="Assets\character\Player\Martial Hero\License.txt" />
     <None Include="Assets\character\Player\Warrior free set\Contact.txt" />
+    <None Include="Assets\Nature_pixel_art_assets\pixel_snapping_README.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
