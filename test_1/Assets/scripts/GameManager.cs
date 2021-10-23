@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     Slider PlayerHPVar;
     Text PlayerHPText;
+    Text TimerText;
 
     private GameObject Player;
     PlayerStatusData PlayerStatus;
+
+    public float StartTime; //タイマーの開始値;
     
 
     private void UICtrl()
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
 
         PlayerHPVar = GameObject.Find("UI/PlayerHP/HPvar").GetComponent<Slider>();
         PlayerHPText = GameObject.Find("UI/PlayerHP/HPText").GetComponent<Text>();
+        TimerText = GameObject.Find("UI/TimerText").GetComponent<Text>();
         PlayerStatus = Player.GetComponent<Warrior>().status; //wariorを参照
         
     }
