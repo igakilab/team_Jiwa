@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     private GameObject Player;
     PlayerStatusData PlayerStatus;
+
+    public messageLogController MessageLog;
     
 
     private void UICtrl()

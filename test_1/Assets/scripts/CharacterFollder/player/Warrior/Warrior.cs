@@ -9,7 +9,7 @@ public class Warrior : PlayerController
         //ジャンプ以外
         if (!anim.GetBool("jump"))
         {
-            messageLog.enqueueMessage("攻撃！");
+            
             anim.SetBool("attack", true); //アタックアニメーション
         }
 

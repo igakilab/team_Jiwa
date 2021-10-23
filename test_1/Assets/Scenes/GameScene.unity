@@ -1499,7 +1499,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: {fileID: 0}
-  messageLog: {fileID: 0}
   ground: {fileID: 60913131}
   jumpPower: 15
   speed: 7
@@ -1599,6 +1598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starttimer: 10
+  MessageLog: {fileID: 160876785}
 --- !u!4 &1157621465
 Transform:
   m_ObjectHideFlags: 0
@@ -2108,7 +2108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: {fileID: 11400000, guid: 4f4d7164ff16c034e85f7dc202c7306d, type: 2}
-  messageLog: {fileID: 160876785}
   ground: {fileID: 1628278455}
   jumpPower: 15
   speed: 7

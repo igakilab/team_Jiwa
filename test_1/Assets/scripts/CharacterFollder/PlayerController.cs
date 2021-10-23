@@ -8,8 +8,6 @@ public abstract class PlayerController : MonoBehaviour
 
     public PlayerStatusData status; //ステータス
 
-    public messageLogController messageLog;
-
     // <コンポーネント>
     protected Rigidbody2D rb2d = null;
     protected Animator anim = null;
@@ -109,7 +107,7 @@ public abstract class PlayerController : MonoBehaviour
         {
             status.setHP(0);
             anim.SetBool("death",true);
-            messageLog.enqueueMessage("死にました");
+            GameManager.instance.MessageLog.enqueueMessage("死にました");
         }
     }
 
@@ -119,7 +117,7 @@ public abstract class PlayerController : MonoBehaviour
         damage = enemyAtk - this.status.getDef(); //ダメージ=敵の攻撃力-自身の防御力
         if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
         status.setHP(status.getHP() - damage); //残りの体力をHPにセット
-        messageLog.enqueueMessage(damage + "ダメージくらった");
+        GameManager.instance.MessageLog.enqueueMessage(damage + "ダメージくらった");
     }
 
     protected void getItem()
