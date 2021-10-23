@@ -63,6 +63,7 @@
     <Compile Include="Assets\Beautiful Progress Bar Free - CYKO\Scripts\SliderScripts.cs" />
     <Compile Include="Assets\searchPlayer.cs" />
     <Compile Include="Assets\scripts\CharacterFollder\player\samurai.cs" />
+    <Compile Include="Assets\scripts\messageLogController.cs" />
     <Compile Include="Assets\scripts\playerManager.cs" />
     <Compile Include="Assets\StatusData\Player\PlayerStatusData.cs" />
     <Compile Include="Assets\scripts\CharacterFollder\player\PlayerStatus.cs" />
@@ -70,7 +71,7 @@
     <Compile Include="Assets\scripts\CharacterFollder\Character.cs" />
     <Compile Include="Assets\scripts\CharacterFollder\PlayerController.cs" />
     <Compile Include="Assets\StatusData\CharacterStatus.cs" />
-    <Compile Include="Assets\scripts\messageLogController.cs" />
+    <Compile Include="Assets\scripts\startButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\character\Player\Warrior free set\License.txt" />
