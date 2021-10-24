@@ -104,5 +104,13 @@ public class Enemy : Character
         
     }
 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag=="Player")
+        {
+            collision.gameObject.GetComponent<Warrior>().onDamage(enemyStatus.getAtk());
+        }
+    }
+
 
 }
