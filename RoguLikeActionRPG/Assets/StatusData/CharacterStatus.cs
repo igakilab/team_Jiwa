@@ -6,7 +6,7 @@ public class CharacterStatus : ScriptableObject
 {
 
     [SerializeField]
-    private int maxHP;
+    private int maxHP;//Å‘å‘Ì—Í
     [SerializeField]
     private int atk; //UŒ‚—Í
     [SerializeField]

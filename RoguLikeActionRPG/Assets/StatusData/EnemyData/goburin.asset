@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe784dd2daa8d34cb067ed379312797, type: 3}
   m_Name: goburin
   m_EditorClassIdentifier: 
-  maxHP: 20
+  maxHP: 15
   atk: 10
-  def: 5
-  EnemyID: 
+  def: 2
+  EnemyID: 3
   name: "\u30B4\u30D6\u30EA\u30F3"
   speed: 3
   exp: 0

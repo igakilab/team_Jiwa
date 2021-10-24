@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.UI;
 using UnityEngine.AI;
 
@@ -26,7 +25,6 @@ public class Enemy : Character
         NameText.text = enemyStatus.getName();//名前
 
     }
-
 
     private void chasePlayer()
     {
@@ -57,21 +55,19 @@ public class Enemy : Character
         if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
         enemyStatus.setHP(enemyStatus.getHP() - damage); //残りの体力をHPにセット
 
+        //log
         GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "に" + damage + "ダメージ与えた！");
-
 
     }
 
     public void death()
     {
-        if (enemyStatus.getHP() <= 0)
-        {
-            enemyStatus.setHP(0);
-            //アニメーション、挙動;
-            GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
+        enemyStatus.setHP(0);
+        //アニメーション、挙動;
+        //log
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
 
-            Destroy(this.gameObject);
-        }
+        Destroy(this.gameObject);
     }
 
     void Start()
@@ -90,7 +86,11 @@ public class Enemy : Character
     {
         EnemyUICtrl();
 
-        death();
+        if (enemyStatus.getHP() <= 0)
+        {
+            death();
+
+        }
 
         //感知範囲内
         if(searchPlayer.getIsPlayer())
@@ -98,6 +98,15 @@ public class Enemy : Character
             chasePlayer();
         }
         
+    }
+
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Warrior>().OnDamage(enemyStatus.getAtk());
+
+        }
     }
 
 

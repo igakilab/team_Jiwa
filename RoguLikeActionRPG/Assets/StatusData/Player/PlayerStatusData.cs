@@ -5,5 +5,16 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerStatusData : CharacterStatus
 {
-    bool invincible = false; //–³“G
+    private bool invincible = false; //–³“G
+
+
+    public bool isInvicible()
+    {
+        return invincible;
+    }
+
+    public void setInvicible(bool tf)
+    {
+        invincible = tf;
+    }
 }

@@ -10,12 +10,26 @@ public class GameManager : MonoBehaviour
     Slider PlayerHPVar;
     Text PlayerHPText;
 
-    public float starttimer;
+    public float starttimer; //タイマーの開始時間
+
+    public Timer timer; //タイマーオブジェクト
 
     private GameObject Player;
-    PlayerStatusData PlayerStatus;
+    PlayerStatusData PlayerStatus;//プレイヤーのステータス;
 
     public messageLogController MessageLog;
+
+    private bool game=false; //ゲームの有効無効
+
+    public void setGame(bool tf)
+    {
+        this.game = tf;
+    }
+
+    public bool isGame()
+    {
+        return this.game;
+    }
     
 
     private void UICtrl()
@@ -29,7 +43,7 @@ public class GameManager : MonoBehaviour
         if(instance==null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            //DontDestroyOnLoad(this.gameObject);
         }
         else 
         {
@@ -44,13 +58,23 @@ public class GameManager : MonoBehaviour
 
         PlayerHPVar = GameObject.Find("UI/PlayerHP/HPvar").GetComponent<Slider>();
         PlayerHPText = GameObject.Find("UI/PlayerHP/HPText").GetComponent<Text>();
+
         PlayerStatus = Player.GetComponent<Warrior>().status; //wariorを参照
-        
+
+        setGame(true);
     }
 
     // Update is called once per frame
     void Update()
     {
         UICtrl();
+
+        if(timer.isTimeZero())
+        {
+            setGame(false);//ゲームを終了させる
+        }
+
+        Debug.Log("ゲーム状況:" + isGame());
+
     }
 }
