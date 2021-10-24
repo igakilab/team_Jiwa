@@ -2058,7 +2058,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1468131940}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d7c1a07f7e9e2844fb2b92a573d596d8, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -3782,6 +3782,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5825094826256973312, guid: 06f97b482c624524a92e0a3e9db37bb4, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: d7c1a07f7e9e2844fb2b92a573d596d8, type: 2}
     - target: {fileID: 5825094826256973313, guid: 06f97b482c624524a92e0a3e9db37bb4, type: 3}
       propertyPath: m_RootOrder
       value: 4
