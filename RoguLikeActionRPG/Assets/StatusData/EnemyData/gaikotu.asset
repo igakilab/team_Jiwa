@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe784dd2daa8d34cb067ed379312797, type: 3}
   m_Name: gaikotu
   m_EditorClassIdentifier: 
-  maxHP: 30
-  atk: 10
-  def: 3
+  initMaxHP: 20
+  initAtk: 10
+  initDef: 2
   EnemyID: 2
   name: "\u304C\u3044\u3053\u3064"
   speed: 4
