@@ -19,9 +19,34 @@ public abstract class PlayerController : MonoBehaviour
     public float jumpPower; //ジャンプ力
     public float speed; //移動スピード
 
+    protected Vector2 angle; //プレイヤーの向き
+
     //攻撃当たり判定
     protected Transform checkAttack;
     protected float attackRadius = 0.7f;
+
+    private void changeAngle(string angle) //引数-1 : 左, 1:   右
+    {
+        if (angle=="left")
+        {
+            this.angle = Vector2.left;
+            spRen.flipX = true;
+            checkAttack.transform.localPosition = new Vector3(-0.16f, 0, 0);
+        }
+        else if(angle=="right")
+        {
+            this.angle = Vector2.right;
+            spRen.flipX = false; //向き
+            checkAttack.transform.localPosition = new Vector3(0.16f, 0, 0);
+        }
+
+    }
+
+    protected bool isControll()
+    {
+        if (!anim.GetBool("death") & GameManager.instance.isGame()) return true;
+        return false;
+    }
 
     private void Jump()
     {
@@ -42,9 +67,7 @@ public abstract class PlayerController : MonoBehaviour
         //右
         if (horizontalKey > 0)
         {
-            spRen.flipX = false; //向き
-
-            checkAttack.transform.localPosition = new Vector3(0.16f, 0, 0);           
+            changeAngle("right");
 
             //ダッシュ
             if (Input.GetKey(KeyCode.LeftShift))
@@ -59,13 +82,11 @@ public abstract class PlayerController : MonoBehaviour
                 xSpeed = speed;
             }
         }
-
         //左
         else if (horizontalKey < 0)
         {
-            spRen.flipX = true;
 
-            checkAttack.transform.localPosition = new Vector3(-0.16f, 0, 0);
+            changeAngle("left");
 
             //ダッシュ
             if (Input.GetKey(KeyCode.LeftShift))
@@ -139,7 +160,7 @@ public abstract class PlayerController : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!anim.GetBool("death"))
+        if (isControll())//プレイヤー操作条件
         {
             move();
 

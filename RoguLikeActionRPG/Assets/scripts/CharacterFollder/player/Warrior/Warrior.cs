@@ -26,6 +26,7 @@ public class Warrior : PlayerController
             int addDamage;
             addDamage = status.getAtk();
             hitEnemy.gameObject.GetComponent<Enemy>().onDamage(addDamage); //ダメージを与える
+            hitEnemy.gameObject.GetComponent<Rigidbody2D>().AddForce(angle * 3f,ForceMode2D.Impulse);//ノックバック
 
         }
 

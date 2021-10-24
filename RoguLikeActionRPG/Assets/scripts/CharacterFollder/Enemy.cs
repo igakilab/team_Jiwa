@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.UI;
 using UnityEngine.AI;
 
@@ -18,6 +17,8 @@ public class Enemy : Character
 
     Rigidbody2D rb2d;
     searchPlayer searchPlayer;
+
+    private bool isDamage; //ダメージを受けたか
  
 
     private void EnemyUICtrl()
@@ -57,21 +58,20 @@ public class Enemy : Character
         if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
         enemyStatus.setHP(enemyStatus.getHP() - damage); //残りの体力をHPにセット
 
+        //log
         GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "に" + damage + "ダメージ与えた！");
-
 
     }
 
     public void death()
     {
-        if (enemyStatus.getHP() <= 0)
-        {
-            enemyStatus.setHP(0);
-            //アニメーション、挙動;
-            GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
+        enemyStatus.setHP(0);
+        //アニメーション、挙動;
 
-            Destroy(this.gameObject);
-        }
+        //log
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
+
+        Destroy(this.gameObject);
     }
 
     void Start()
@@ -90,7 +90,11 @@ public class Enemy : Character
     {
         EnemyUICtrl();
 
-        death();
+        if (enemyStatus.getHP() <= 0)
+        {
+            death();
+
+        }
 
         //感知範囲内
         if(searchPlayer.getIsPlayer())
