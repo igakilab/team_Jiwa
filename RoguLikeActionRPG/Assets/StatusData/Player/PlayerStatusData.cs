@@ -7,6 +7,7 @@ public class PlayerStatusData : CharacterStatus
 {
     private bool invincible = false; //–³“G
 
+
     public bool isInvicible()
     {
         return invincible;

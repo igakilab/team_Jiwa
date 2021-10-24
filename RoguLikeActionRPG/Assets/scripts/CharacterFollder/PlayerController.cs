@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class PlayerController : MonoBehaviour
 {
 
-    public PlayerStatusData status; //ステータス
+    
 
     // <コンポーネント>
     protected Rigidbody2D rb2d = null;
@@ -15,15 +15,19 @@ public abstract class PlayerController : MonoBehaviour
     public groundCheck ground;
     //</コンポーネント>
 
-
+    //プレイヤー情報
+    public PlayerStatusData status; //ステータス
     public float jumpPower; //ジャンプ力
     public float speed; //移動スピード
-
     protected Vector2 angle; //プレイヤーの向き
 
     //攻撃当たり判定
     protected Transform checkAttack;
     protected float attackRadius = 0.7f;
+
+
+    //実装に必要な変数
+    bool isOnce = false;//コルーチンを一度のみ呼び出す変数
 
     private void changeAngle(string angle) //引数-1 : 左, 1:   右
     {
@@ -48,6 +52,38 @@ public abstract class PlayerController : MonoBehaviour
         return false;
     }
 
+    private IEnumerator Condition()
+    {
+        //無敵時間
+        if (status.isInvicible())
+        {
+            float level = Mathf.Abs(Mathf.Sin(Time.time * 10));
+            spRen.color = new Color(1f, 1f, 1f, level);
+
+            //１回のみコルーチンを
+            if (!isOnce)
+            {
+                isOnce = true;
+                yield return new WaitForSeconds(3.0f);
+
+                status.setInvicible(false);
+                spRen.color = new Color(1f, 1f, 1f, 1f);
+                isOnce = false;
+            }
+        }
+    }
+
+
+    private void init()
+    {
+        //ステータス処理
+        status.setHP(status.getMaxHP());//HPを最大HPにする
+        status.setInvicible(false);//無敵時間を停止
+
+        angle = Vector2.right;//スタート時点のプレイヤーの向き
+    }
+
+    // <PlayerMotion>
     private void Jump()
     {
         if (ground.getIsGround())
@@ -124,27 +160,47 @@ public abstract class PlayerController : MonoBehaviour
 
     protected void death()
     {
-        if(status.getHP()<0)
+        if (status.getHP() < 0)
         {
             status.setHP(0);
-            anim.SetBool("death",true);
+            anim.SetBool("death", true);
             GameManager.instance.MessageLog.enqueueMessage("死んでしまった！");
         }
     }
 
-    public void onDamage(int enemyAtk)
+    public void OnDamage(int enemyAtk)
     {
+        //ダメージ計算
         int damage;//実際に与えるダメージ
         damage = enemyAtk - this.status.getDef(); //ダメージ=敵の攻撃力-自身の防御力
         if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
-        status.setHP(status.getHP() - damage); //残りの体力をHPにセット
-        GameManager.instance.MessageLog.enqueueMessage(damage + "ダメージくらった");//メッセージログ
+
+        if (!(damage == 0))
+        {
+            //無敵時間以外のときに
+            if (!status.isInvicible())
+            {
+                status.setHP(status.getHP() - damage); //残りの体力をHPにセット
+                GameManager.instance.MessageLog.enqueueMessage(damage + "ダメージくらった");//メッセージログ
+
+                status.setInvicible(true);//無敵時間ON
+
+            }
+        }
+        else
+        {
+            GameManager.instance.MessageLog.enqueueMessage("ダメージを与えれなかった！");
+        }
     }
 
     protected void getItem()
     {
 
     }
+    // </PlayerMotion>
+
+
+
 
    protected virtual void Start()
     {
@@ -154,8 +210,9 @@ public abstract class PlayerController : MonoBehaviour
         spRen = GetComponent<SpriteRenderer>();
         checkAttack = transform.Find("checkAttack").GetComponent<Transform>(); //攻撃判定オブジェクトを子オブジェクトより入手
 
-        //ステータス処理
-        status.setHP(status.getMaxHP());//HPを最大HPにする
+        init();//初期化
+
+
     }
 
     protected virtual void Update()
@@ -163,6 +220,8 @@ public abstract class PlayerController : MonoBehaviour
         if (isControll())//プレイヤー操作条件
         {
             move();
+
+            StartCoroutine(Condition());
 
             if(Input.GetKeyDown(KeyCode.Space))
             {
@@ -177,7 +236,6 @@ public abstract class PlayerController : MonoBehaviour
                 attack();
 
             }
-
 
         }
 

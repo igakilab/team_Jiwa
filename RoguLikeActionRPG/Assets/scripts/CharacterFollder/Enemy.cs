@@ -17,8 +17,6 @@ public class Enemy : Character
 
     Rigidbody2D rb2d;
     searchPlayer searchPlayer;
-
-    private bool isDamage; //ダメージを受けたか
  
 
     private void EnemyUICtrl()
@@ -27,7 +25,6 @@ public class Enemy : Character
         NameText.text = enemyStatus.getName();//名前
 
     }
-
 
     private void chasePlayer()
     {
@@ -67,7 +64,6 @@ public class Enemy : Character
     {
         enemyStatus.setHP(0);
         //アニメーション、挙動;
-
         //log
         GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
 
@@ -104,11 +100,12 @@ public class Enemy : Character
         
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.tag=="Player")
+        if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Warrior>().onDamage(enemyStatus.getAtk());
+            collision.gameObject.GetComponent<Warrior>().OnDamage(enemyStatus.getAtk());
+
         }
     }
 

@@ -36,7 +36,7 @@ public class Warrior : PlayerController
     {
         if(Input.GetKeyDown(KeyCode.G))
         {
-            onDamage(10);
+            OnDamage(10);
         }
     }
 

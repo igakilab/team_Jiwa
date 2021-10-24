@@ -1498,8 +1498,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ea3eecd38c84b74aade29237619f33c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 0}
   ground: {fileID: 60913131}
+  status: {fileID: 0}
   jumpPower: 15
   speed: 7
 --- !u!1 &1130246531
@@ -2108,8 +2108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2cbff9cef62fb34f8787c347b8da4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 11400000, guid: 4f4d7164ff16c034e85f7dc202c7306d, type: 2}
   ground: {fileID: 1628278455}
+  status: {fileID: 11400000, guid: 4f4d7164ff16c034e85f7dc202c7306d, type: 2}
   jumpPower: 15
   speed: 7
 --- !u!1001 &1491800501
@@ -2179,6 +2179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: test_enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5825094826256973316, guid: 06f97b482c624524a92e0a3e9db37bb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f97b482c624524a92e0a3e9db37bb4, type: 3}
 --- !u!1001 &1564209571
@@ -2247,6 +2251,10 @@ PrefabInstance:
     - target: {fileID: 5825094826256973316, guid: 06f97b482c624524a92e0a3e9db37bb4, type: 3}
       propertyPath: m_Name
       value: test_enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825094826256973316, guid: 06f97b482c624524a92e0a3e9db37bb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f97b482c624524a92e0a3e9db37bb4, type: 3}
