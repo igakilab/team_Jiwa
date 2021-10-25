@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
 
     int EnemyNum; //シーン内の敵の数
+    int killEnemyNum;//倒した敵の数
     GameObject Enemys;//エネミーの親オブジェクト
 
     public static GameManager instance = null;
@@ -25,6 +26,11 @@ public class GameManager : MonoBehaviour
     public messageLogController MessageLog;
 
     private bool game=false; //ゲームの有効無効
+
+    public void addKillEnemy()
+    {
+        killEnemyNum++;
+    }
 
     public void setGame(bool tf)
     {
@@ -88,6 +94,18 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void spawnBoss()
+    {
+        GameObject Enemy;//スポーンする敵
+        float SpawnX; //スポーンする座標
+
+        SpawnX = Random.Range(-10f, 10f);//スポーンする座標を指定した範囲内でランダムで入手
+
+        Enemy = (GameObject)Resources.Load("Prefab/Enemy/KingGoburin");
+
+        Instantiate(Enemy, new Vector3(SpawnX, 0f, 0f), Quaternion.identity).transform.parent = Enemys.transform;//Enemysの子オブジェクトにプレハブを生成
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +120,8 @@ public class GameManager : MonoBehaviour
         PlayerStatus = Player.GetComponent<Warrior>().status; //wariorを参照
 
         setGame(true);
+
+        killEnemyNum = 0;
     }
 
     // Update is called once per frame
@@ -120,6 +140,10 @@ public class GameManager : MonoBehaviour
         if(EnemyNum<4)
         {
             spawnEnemey();//スポーン
+        }
+        if(killEnemyNum%10==0 && !(killEnemyNum==0))
+        {
+            if(GameObject.FindGameObjectWithTag("Boss")==null)  spawnBoss();
         }
 
     }
