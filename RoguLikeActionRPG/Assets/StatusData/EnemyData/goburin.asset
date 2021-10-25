@@ -18,4 +18,4 @@ MonoBehaviour:
   EnemyID: 3
   name: "\u30B4\u30D6\u30EA\u30F3"
   speed: 3
-  exp: 0
+  exp: 5

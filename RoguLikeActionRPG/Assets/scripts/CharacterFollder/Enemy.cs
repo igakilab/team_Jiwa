@@ -64,8 +64,10 @@ public class Enemy : Character
     {
         enemyStatus.setHP(0);
         //アニメーション、挙動;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Warrior>().status.addExp(enemyStatus.getExp());//ウォーリアーのみ経験値を与える;
         //log
         GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getExp() + "の経験値を入手した!");
 
         Destroy(this.gameObject);
     }
