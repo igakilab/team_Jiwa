@@ -15,7 +15,7 @@ public class CharacterStatus : ScriptableObject
 
     private int HP; //åªç›ÇÃHP;
 
-
+    //getter,setter,adder
     public int getInitMaxHP()
     {
         return initMaxHP;

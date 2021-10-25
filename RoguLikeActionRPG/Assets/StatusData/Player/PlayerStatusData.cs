@@ -12,8 +12,8 @@ public class PlayerStatusData : CharacterStatus
     private int def; //現在の防御力
 
     private int level=1;
-    private int exp; //
-    int needExp;
+    private int exp; //現在の所持経験値
+    int needExp;//次のレベル上がるのに必要な経験値
 
     public void showStatus()
     {
@@ -21,12 +21,15 @@ public class PlayerStatusData : CharacterStatus
         Debug.Log("HP:" + getHP());
         Debug.Log("Atk:" + atk);
         Debug.Log("Def:" + def);
+
+        Debug.Log("必要経験値:" + needExp);
+        Debug.Log("所持経験値:" + exp);
     }
 
     //ランダムでステータスを上げる
     void RandomStatusUp()
     {
-        int Statusup = Random.Range(0, 3);
+        int Statusup = Random.Range(0, 3);//３つのステータスをランダム選択
 
         int UpValue = Random.Range(1, 4);//ステータスの上がり基礎値
 
@@ -56,6 +59,10 @@ public class PlayerStatusData : CharacterStatus
     {
         GameManager.instance.MessageLog.enqueueMessage("レベルが上がった！");
         level++;
+
+        exp = exp - needExp;//経験値が越えた差分を代入
+        needExp = (int)(needExp * 1.2f);
+
         RandomStatusUp();
     }
 
@@ -76,6 +83,8 @@ public class PlayerStatusData : CharacterStatus
         setHP(getInitMaxHP());//
         atk = getInitAtk();
         def = getInitDef();
+        needExp = 20;
+        exp = 0;
 
         setInvicible(false);
     }
@@ -96,6 +105,16 @@ public class PlayerStatusData : CharacterStatus
         return this.def;
     }
 
+    public int getExp()
+    {
+        return this.exp;
+    }
+
+    public int getNeedExp()
+    {
+        return this.needExp;
+    }
+
     public void addMaxHP(int value)
     {
         this.MaxHP += value;
@@ -109,6 +128,11 @@ public class PlayerStatusData : CharacterStatus
     public void addDef(int value)
     {
         this.def += value;
+    }
+
+    public void addExp(int value)
+    {
+        this.exp += value;
     }
 
 
