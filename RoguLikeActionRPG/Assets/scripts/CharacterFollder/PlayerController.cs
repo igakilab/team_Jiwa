@@ -25,7 +25,6 @@ public abstract class PlayerController : MonoBehaviour
     protected Transform checkAttack;
     protected float attackRadius = 0.7f;
 
-
     //実装に必要な変数
     bool isOnce = false;//コルーチンを一度のみ呼び出す変数
 
@@ -78,6 +77,7 @@ public abstract class PlayerController : MonoBehaviour
     {
         //ステータス処理
         status.initialize();
+        status.setHP(status.getInitMaxHP());
 
         angle = Vector2.right;//スタート時点のプレイヤーの向き
     }
@@ -179,7 +179,7 @@ public abstract class PlayerController : MonoBehaviour
             //無敵時間以外のときに
             if (!status.isInvicible())
             {
-                status.setHP(status.getHP() - damage); //残りの体力をHPにセット
+                status.setHP(status.getHP() - damage);
                 GameManager.instance.MessageLog.enqueueMessage(damage + "ダメージくらった");//メッセージログ
 
                 status.setInvicible(true);//無敵時間ON
