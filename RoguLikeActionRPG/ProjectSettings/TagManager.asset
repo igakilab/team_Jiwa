@@ -7,6 +7,8 @@ TagManager:
   - ground
   - player
   - Item
+  - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX
