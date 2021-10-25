@@ -14,6 +14,7 @@ public class EnemyStatusData : CharacterStatus
     [SerializeField]
     private int exp;//åoå±íl
 
+
     public int getExp()
     {
         return this.exp;

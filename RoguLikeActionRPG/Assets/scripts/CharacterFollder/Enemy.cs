@@ -6,8 +6,11 @@ using UnityEngine.AI;
 
 public class Enemy : Character
 {
-    
-    public EnemyStatusData enemyStatus;//ステータス
+    //固定ステータス
+    protected EnemyStatusData enemyStatus;
+
+    //動的ステータス
+    protected int hp; //敵の現在のHP
 
     // <UI>
     Slider HPvar; /*体力バー*/
@@ -21,7 +24,7 @@ public class Enemy : Character
 
     private void EnemyUICtrl()
     {
-        HPvar.value = (float)enemyStatus.getHP() / (float)enemyStatus.getInitMaxHP(); //HPバーの更新
+        HPvar.value = (float)this.hp / (float)enemyStatus.getInitMaxHP(); //HPバーの更新
         NameText.text = enemyStatus.getName();//名前
 
     }
@@ -53,7 +56,7 @@ public class Enemy : Character
         int damage;//実際に与えるダメージ
         damage = enemyAtk - this.enemyStatus.getInitDef(); //ダメージ=敵の攻撃力-自身の防御力
         if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
-        enemyStatus.setHP(enemyStatus.getHP() - damage); //残りの体力をHPにセット
+        this.hp=this.hp - damage; //残りの体力をHPにセット
 
         //log
         GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "に" + damage + "ダメージ与えた！");
@@ -62,7 +65,7 @@ public class Enemy : Character
 
     public void death()
     {
-        enemyStatus.setHP(0);
+        hp=0;
         //アニメーション、挙動;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Warrior>().status.addExp(enemyStatus.getExp());//ウォーリアーのみ経験値を与える;
         //log
@@ -72,10 +75,9 @@ public class Enemy : Character
         Destroy(this.gameObject);
     }
 
-    void Start()
+    protected virtual void Start()
     {
 
-        enemyStatus.setHP(enemyStatus.getInitMaxHP());
 
         HPvar = transform.Find("Canvas/HPBar").gameObject.GetComponent<Slider>();
         NameText = transform.Find("Canvas/Name").gameObject.GetComponent<Text>();
@@ -84,11 +86,11 @@ public class Enemy : Character
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         EnemyUICtrl();
 
-        if (enemyStatus.getHP() <= 0)
+        if (hp <= 0)
         {
             death();
 

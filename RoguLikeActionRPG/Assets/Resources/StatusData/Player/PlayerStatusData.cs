@@ -15,15 +15,26 @@ public class PlayerStatusData : CharacterStatus
     private int exp; //現在の所持経験値
     int needExp;//次のレベル上がるのに必要な経験値
 
+    private int hp;
+
+    public int getHP()
+    {
+        return hp;
+    }
+
+    public void setHP(int value)
+    {
+        this.hp = value;
+    }
+
+    public void addHP(int hp)
+    {
+        this.hp += hp;
+    }
+
     public void showStatus()
     {
-        Debug.Log("MaxHP:"+MaxHP);
-        Debug.Log("HP:" + getHP());
-        Debug.Log("Atk:" + atk);
-        Debug.Log("Def:" + def);
 
-        Debug.Log("必要経験値:" + needExp);
-        Debug.Log("所持経験値:" + exp);
     }
 
     //ランダムでステータスを上げる
@@ -80,7 +91,6 @@ public class PlayerStatusData : CharacterStatus
     {
         level = 1;
         MaxHP = getInitMaxHP();
-        setHP(getInitMaxHP());//
         atk = getInitAtk();
         def = getInitDef();
         needExp = 20;
