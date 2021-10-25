@@ -65,9 +65,25 @@ public class GameManager : MonoBehaviour
     {
         GameObject Enemy;//スポーンする敵
         float SpawnX; //スポーンする座標
+        int num;
 
         SpawnX = Random.Range(-10f, 10f);//スポーンする座標を指定した範囲内でランダムで入手
-        Enemy = (GameObject)Resources.Load("Prefab/Enemy/goburin");//スポーン対象のプレハブを読み込む
+
+        num = Random.Range(1, 100);
+
+        if(num<=45)
+        {
+            Enemy = (GameObject)Resources.Load("Prefab/Enemy/suraimu");//スポーン対象のプレハブを読み込む
+        }
+        else if(num<=90)
+        {
+            Enemy = (GameObject)Resources.Load("Prefab/Enemy/goburin");//スポーン対象のプレハブを読み込む
+        }
+        else
+        {
+            Enemy = (GameObject)Resources.Load("Prefab/Enemy/gaikotu");//スポーン対象のプレハブを読み込む
+        }
+
         Instantiate(Enemy, new Vector3(SpawnX, 0f, 0f), Quaternion.identity).transform.parent = Enemys.transform;//Enemysの子オブジェクトにプレハブを生成
 
     }
