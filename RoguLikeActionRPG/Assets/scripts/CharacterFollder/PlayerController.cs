@@ -77,8 +77,7 @@ public abstract class PlayerController : MonoBehaviour
     private void init()
     {
         //ステータス処理
-        status.setHP(status.getMaxHP());//HPを最大HPにする
-        status.setInvicible(false);//無敵時間を停止
+        status.initialize();
 
         angle = Vector2.right;//スタート時点のプレイヤーの向き
     }
@@ -237,9 +236,33 @@ public abstract class PlayerController : MonoBehaviour
 
             }
 
+            //レベルアップ必要経験値を所持経験値が超えたとき
+
+            if (status.getExp()>=status.getNeedExp())
+            {
+                status.levelup();
+                
+            }
+
+
+
         }
 
         death();
+
+        //テスト用コマンド
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            status.levelup();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            status.showStatus();
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            status.addExp(15);
+        }
     }
 
 

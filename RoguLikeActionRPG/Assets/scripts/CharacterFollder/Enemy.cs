@@ -21,7 +21,7 @@ public class Enemy : Character
 
     private void EnemyUICtrl()
     {
-        HPvar.value = (float)enemyStatus.getHP() / (float)enemyStatus.getMaxHP(); //HPバーの更新
+        HPvar.value = (float)enemyStatus.getHP() / (float)enemyStatus.getInitMaxHP(); //HPバーの更新
         NameText.text = enemyStatus.getName();//名前
 
     }
@@ -51,7 +51,7 @@ public class Enemy : Character
     public void onDamage(int enemyAtk)
     {
         int damage;//実際に与えるダメージ
-        damage = enemyAtk - this.enemyStatus.getDef(); //ダメージ=敵の攻撃力-自身の防御力
+        damage = enemyAtk - this.enemyStatus.getInitDef(); //ダメージ=敵の攻撃力-自身の防御力
         if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
         enemyStatus.setHP(enemyStatus.getHP() - damage); //残りの体力をHPにセット
 
@@ -64,8 +64,10 @@ public class Enemy : Character
     {
         enemyStatus.setHP(0);
         //アニメーション、挙動;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Warrior>().status.addExp(enemyStatus.getExp());//ウォーリアーのみ経験値を与える;
         //log
         GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getExp() + "の経験値を入手した!");
 
         Destroy(this.gameObject);
     }
@@ -73,7 +75,7 @@ public class Enemy : Character
     void Start()
     {
 
-        enemyStatus.setHP(enemyStatus.getMaxHP());
+        enemyStatus.setHP(enemyStatus.getInitMaxHP());
 
         HPvar = transform.Find("Canvas/HPBar").gameObject.GetComponent<Slider>();
         NameText = transform.Find("Canvas/Name").gameObject.GetComponent<Text>();
@@ -104,7 +106,7 @@ public class Enemy : Character
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Warrior>().OnDamage(enemyStatus.getAtk());
+            collision.gameObject.GetComponent<Warrior>().OnDamage(enemyStatus.getInitAtk());
 
         }
     }
