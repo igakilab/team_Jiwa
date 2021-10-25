@@ -8,7 +8,6 @@ public class suraimu : Enemy
     protected override void Start()
     {
         enemyStatus = Resources.Load<EnemyStatusData>("StatusData/Enemy/suraimu");
-        hp = enemyStatus.getInitMaxHP();
         base.Start();
     }
 

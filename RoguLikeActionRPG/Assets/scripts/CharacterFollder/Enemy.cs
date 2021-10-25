@@ -77,8 +77,7 @@ public class Enemy : Character
 
     protected virtual void Start()
     {
-
-
+        hp = enemyStatus.getInitMaxHP();
         HPvar = transform.Find("Canvas/HPBar").gameObject.GetComponent<Slider>();
         NameText = transform.Find("Canvas/Name").gameObject.GetComponent<Text>();
         searchPlayer = transform.Find("SearchArea").gameObject.GetComponent<searchPlayer>();

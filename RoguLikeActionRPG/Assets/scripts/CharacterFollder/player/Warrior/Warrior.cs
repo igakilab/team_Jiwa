@@ -23,8 +23,8 @@ public class Warrior : PlayerController
         //UŒ‚i‚ª“–‚½‚Á‚½‘S‚Ä‚Ì“G‚É‘Î‚µ‚Ä
         foreach (Collider2D hitEnemy in hitEnemys)
         {
-            int addDamage;
-            addDamage = status.getAtk();
+            int addDamage; //“G‚É—^‚¦‚éUŒ‚—Í ¦ÀÛ‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é”’l‚Í“G‚Ì–hŒä—Í‚Ì·•ª
+            addDamage = (int)(status.getAtk() * Random.Range(0.8f, 1.2f));
             hitEnemy.gameObject.GetComponent<Enemy>().onDamage(addDamage); //ƒ_ƒ[ƒW‚ğ—^‚¦‚é
             hitEnemy.gameObject.GetComponent<Rigidbody2D>().AddForce(angle * 3f,ForceMode2D.Impulse);//ƒmƒbƒNƒoƒbƒN
 

@@ -8,7 +8,6 @@ public class gaikotu : Enemy
     protected override void Start()
     {
         enemyStatus = Resources.Load<EnemyStatusData>("StatusData/Enemy/gaikotu");
-        hp = enemyStatus.getInitMaxHP();
         base.Start();
     }
 

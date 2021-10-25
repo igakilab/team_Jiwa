@@ -17,20 +17,6 @@ public class PlayerStatusData : CharacterStatus
 
     private int hp;
 
-    public int getHP()
-    {
-        return hp;
-    }
-
-    public void setHP(int value)
-    {
-        this.hp = value;
-    }
-
-    public void addHP(int hp)
-    {
-        this.hp += hp;
-    }
 
     public void showStatus()
     {
@@ -91,6 +77,7 @@ public class PlayerStatusData : CharacterStatus
     {
         level = 1;
         MaxHP = getInitMaxHP();
+        hp = getMaxHP();
         atk = getInitAtk();
         def = getInitDef();
         needExp = 20;
@@ -104,6 +91,12 @@ public class PlayerStatusData : CharacterStatus
     {
         return this.MaxHP;
     }
+
+    public int getHP()
+    {
+        return hp;
+    }
+
 
     public int getAtk()
     {
@@ -123,6 +116,11 @@ public class PlayerStatusData : CharacterStatus
     public int getNeedExp()
     {
         return this.needExp;
+    }
+
+    public void setHP(int value)
+    {
+        this.hp = value;
     }
 
     public void addMaxHP(int value)
@@ -145,5 +143,9 @@ public class PlayerStatusData : CharacterStatus
         this.exp += value;
     }
 
+    public void addHP(int hp)
+    {
+        this.hp += hp;
+    }
 
 }

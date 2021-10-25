@@ -6,8 +6,6 @@ using UnityEngine;
 public abstract class PlayerController : MonoBehaviour
 {
 
-    
-
     // <コンポーネント>
     protected Rigidbody2D rb2d = null;
     protected Animator anim = null;
@@ -72,13 +70,9 @@ public abstract class PlayerController : MonoBehaviour
         }
     }
 
-
     private void init()
     {
-        //ステータス処理
-        status.initialize();
-        status.setHP(status.getInitMaxHP());
-
+        status.initialize();//ステータス初期化
         angle = Vector2.right;//スタート時点のプレイヤーの向き
     }
 
@@ -197,9 +191,6 @@ public abstract class PlayerController : MonoBehaviour
 
     }
     // </PlayerMotion>
-
-
-
 
    protected virtual void Start()
     {

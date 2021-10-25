@@ -8,7 +8,6 @@ public class goburin : Enemy
     protected override void Start()
     {
         enemyStatus = Resources.Load<EnemyStatusData>("StatusData/Enemy/goburin");
-        hp = enemyStatus.getInitMaxHP();
         base.Start();
     }
 
