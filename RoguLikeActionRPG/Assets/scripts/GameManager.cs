@@ -64,12 +64,11 @@ public class GameManager : MonoBehaviour
     private void spawnEnemey()
     {
         GameObject Enemy;//スポーンする敵
-
         float SpawnX; //スポーンする座標
 
+        SpawnX = Random.Range(-10f, 10f);//スポーンする座標を指定した範囲内でランダムで入手
         Enemy = (GameObject)Resources.Load("Prefab/Enemy/goburin");//スポーン対象のプレハブを読み込む
-
-        Instantiate(Enemy, new Vector3(0f, 0f, 0f), Quaternion.identity).transform.parent = Enemys.transform;//Enemysの子オブジェクトにプレハブを生成
+        Instantiate(Enemy, new Vector3(SpawnX, 0f, 0f), Quaternion.identity).transform.parent = Enemys.transform;//Enemysの子オブジェクトにプレハブを生成
 
     }
 
@@ -99,12 +98,13 @@ public class GameManager : MonoBehaviour
             setGame(false);//ゲームを終了させる
         }
 
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            spawnEnemey();
-        }
-
         EnemyNum = Enemys.transform.childCount;//敵の数を数える
+
+        //シーン内の敵が４体以下なら
+        if(EnemyNum<4)
+        {
+            spawnEnemey();//スポーン
+        }
 
     }
 }
