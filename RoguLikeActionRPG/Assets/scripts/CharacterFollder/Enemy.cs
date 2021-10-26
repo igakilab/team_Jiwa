@@ -19,7 +19,12 @@ public class Enemy : Character
     // </UI>
 
     Rigidbody2D rb2d;
+    SpriteRenderer spRen;
     searchPlayer searchPlayer;
+    Animator anim;
+
+    GameObject monsteObject;
+
  
 
     private void EnemyUICtrl()
@@ -41,13 +46,16 @@ public class Enemy : Character
 
         if (direction.x>0)
         {
+            spRen.flipX = false;
             speedx = enemyStatus.getSpeed();
         }
         else if(direction.x<0)
         {
+            spRen.flipX = true;
             speedx = -enemyStatus.getSpeed();
         }
 
+        anim.SetBool("walk", true);
         rb2d.velocity = new Vector2(speedx, rb2d.velocity.y);
     }
 
@@ -78,11 +86,15 @@ public class Enemy : Character
 
     protected virtual void Start()
     {
+        monsteObject = transform.Find("MonsterObject").gameObject;
+
         hp = enemyStatus.getInitMaxHP();
         HPvar = transform.Find("Canvas/HPBar").gameObject.GetComponent<Slider>();
         NameText = transform.Find("Canvas/Name").gameObject.GetComponent<Text>();
         searchPlayer = transform.Find("SearchArea").gameObject.GetComponent<searchPlayer>();
         rb2d = GetComponent<Rigidbody2D>();
+        spRen = monsteObject.GetComponent<SpriteRenderer>();
+        anim = monsteObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -100,6 +112,11 @@ public class Enemy : Character
         if(searchPlayer.getIsPlayer())
         {
             chasePlayer();
+        }
+        else
+        {
+            rb2d.velocity = new Vector2(0, 0);
+            anim.SetBool("walk", false);
         }
         
     }
