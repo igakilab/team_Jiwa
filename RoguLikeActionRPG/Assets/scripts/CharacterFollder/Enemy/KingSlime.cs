@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Const;
 
 public class KingSlime : Enemy
 {
@@ -16,10 +17,10 @@ public class KingSlime : Enemy
         GameManager.instance.addKillEnemy();
 
         //分裂
-        GameObject Slime= (GameObject)Resources.Load("Prefab/Enemy/suraimu");
+        GameObject Slime= (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH+"suraimu");
         float localX = this.transform.localPosition.x; //キングスライムのローカル座標
 
-         for(int i=0;i<SPAWN_SLIME;i++)
+         for(int i=0;i<CO.SPAWN_SLIME;i++)
         {
             Instantiate(Slime, new Vector2(localX + i -1, 0), Quaternion.identity).transform.parent = GameObject.Find("Enemys").transform;
         }
@@ -36,7 +37,7 @@ public class KingSlime : Enemy
     }
     protected override void Start()
     {
-        enemyStatus = Resources.Load<EnemyStatusData>("StatusData/Enemy/KingSlime");
+        enemyStatus = Resources.Load<EnemyStatusData>(CO.BOSS_PREFAB_PATH+"KingSlime");
         base.Start();
     }
 

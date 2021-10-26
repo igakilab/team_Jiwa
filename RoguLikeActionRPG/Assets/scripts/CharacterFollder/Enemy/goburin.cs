@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Const;
 public class goburin : Enemy
 {
     // Start is called before the first frame update
     protected override void Start()
     {
-        enemyStatus = Resources.Load<EnemyStatusData>("StatusData/Enemy/goburin");
+        enemyStatus = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH + "goburin");
         base.Start();
     }
 

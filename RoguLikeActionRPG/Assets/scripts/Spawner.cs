@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Const;
 
 public class Spawner : MonoBehaviour
 {
@@ -35,15 +36,15 @@ public class Spawner : MonoBehaviour
 
         if (num <= 45)
         {
-            Enemy = (GameObject)Resources.Load("Prefab/Enemy/suraimu");//スポーン対象のプレハブを読み込む
+            Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH+"suraimu");//スポーン対象のプレハブを読み込む
         }
         else if (num <= 90)
         {
-            Enemy = (GameObject)Resources.Load("Prefab/Enemy/goburin");//スポーン対象のプレハブを読み込む
+            Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH + "goburin");//スポーン対象のプレハブを読み込む
         }
         else
         {
-            Enemy = (GameObject)Resources.Load("Prefab/Enemy/gaikotu");//スポーン対象のプレハブを読み込む
+            Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH + "gaikotu");//スポーン対象のプレハブを読み込む
         }
 
         Instantiate(Enemy, new Vector3(SpawnX, 0f, 0f), Quaternion.identity).transform.parent = Enemys.transform;//Enemysの子オブジェクトにプレハブを生成
@@ -68,10 +69,10 @@ public class Spawner : MonoBehaviour
         switch (num)
         {
             case 1:
-                Enemy = (GameObject)Resources.Load("Prefab/Enemy/Boss/KingGoburin");
+                Enemy = (GameObject)Resources.Load(CO.BOSS_PREFAB_PATH+"KingGoburin");
                 break;
             case 2:
-                Enemy = (GameObject)Resources.Load("Prefab/Enemy/Boss/KingSlime");
+                Enemy = (GameObject)Resources.Load(CO.BOSS_PREFAB_PATH+"KingSlime");
                 break;
         }
 
@@ -88,7 +89,7 @@ public class Spawner : MonoBehaviour
         Enemys=new GameObject("Enemys");//敵を格納する親オブジェクトの作成
         spawnEnabled=true;
 
-        spawnEnemy(MAX_ENEMY_NUM);
+        spawnEnemy(CO.MAX_ENEMY_NUM);
     }
 
     // Update is called once per frame
@@ -96,12 +97,12 @@ public class Spawner : MonoBehaviour
     {
         EnemyNum = Enemys.transform.childCount;//敵の数を数える
 
-        if(EnemyNum<MAX_ENEMY_NUM && spawnEnabled)
+        if(EnemyNum<CO.MAX_ENEMY_NUM && spawnEnabled)
         {
             spawnEnemy();
-            StartCoroutine(spawnDelay(spawnTime));
+            StartCoroutine(spawnDelay(CO.SPAWN_TIME));
         }
-        if (GameManager.instance.GetKillEnemy() % 10 == 0 && !(GameManager.instance.GetKillEnemy() == 0))
+        if (GameManager.instance.GetKillEnemy() % CO.BOSS_APPEARANCE_CON == 0 && !(GameManager.instance.GetKillEnemy() == 0))
         {
             if (GameObject.FindGameObjectWithTag("Boss") == null) spawnBoss();//ボスがいなかったらスポーン 
         }
