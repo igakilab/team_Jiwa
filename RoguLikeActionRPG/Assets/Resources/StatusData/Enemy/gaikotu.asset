@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: gaikotu
   m_EditorClassIdentifier: 
   initMaxHP: 20
-  initAtk: 7
+  initAtk: 9
   initDef: 3
   EnemyID: 2
   name: "\u304C\u3044\u3053\u3064"

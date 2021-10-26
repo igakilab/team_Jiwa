@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerStatusData : CharacterStatus
 {
     private bool invincible = false; //–³“G
+    private bool death=false;
 
     private int MaxHP; //Œ»İ‚ÌÅ‘å‘Ì—Í
     private int atk; //Œ»İ‚ÌUŒ‚—Í
@@ -73,6 +74,16 @@ public class PlayerStatusData : CharacterStatus
         invincible = tf;
     }
 
+    public bool isDeath()
+    {
+        return death;
+    }
+
+    public void setDeath(bool tf)
+    {
+        this.death = tf;
+    }
+
     public void initialize()
     {
         level = 1;
@@ -84,6 +95,7 @@ public class PlayerStatusData : CharacterStatus
         exp = 0;
 
         setInvicible(false);
+        setDeath(false); 
     }
 
     //getter setter adder

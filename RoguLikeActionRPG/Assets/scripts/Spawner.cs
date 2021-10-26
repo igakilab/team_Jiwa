@@ -59,12 +59,23 @@ public class Spawner : MonoBehaviour
 
     private void spawnBoss()
     {
-        GameObject Enemy;//スポーンする敵
+        GameObject Enemy=null;//スポーンする敵
         float SpawnX; //スポーンする座標
+        int num = Random.Range(1, 3);
 
         SpawnX = Random.Range(-10f, 10f);//スポーンする座標を指定した範囲内でランダムで入手
 
-        Enemy = (GameObject)Resources.Load("Prefab/Enemy/KingGoburin");
+        switch (num)
+        {
+            case 1:
+                Enemy = (GameObject)Resources.Load("Prefab/Enemy/Boss/KingGoburin");
+                break;
+            case 2:
+                Enemy = (GameObject)Resources.Load("Prefab/Enemy/Boss/KingSlime");
+                break;
+        }
+
+        
 
         Instantiate(Enemy, new Vector3(SpawnX, 0f, 0f), Quaternion.identity).transform.parent = Enemys.transform;//Enemysの子オブジェクトにプレハブを生成
 

@@ -71,7 +71,7 @@ public class Enemy : Character
 
     }
 
-    public void death()
+    protected virtual void death()
     {
         hp=0;
         //アニメーション、挙動;
@@ -115,7 +115,7 @@ public class Enemy : Character
         }
         else
         {
-            rb2d.velocity = new Vector2(0, 0);
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             anim.SetBool("walk", false);
         }
         

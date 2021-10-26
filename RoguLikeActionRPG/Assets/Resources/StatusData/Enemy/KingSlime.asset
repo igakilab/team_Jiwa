@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fe784dd2daa8d34cb067ed379312797, type: 3}
-  m_Name: goburin
+  m_Name: KingSlime
   m_EditorClassIdentifier: 
-  initMaxHP: 10
-  initAtk: 7
+  initMaxHP: 30
+  initAtk: 11
   initDef: 2
-  EnemyID: 3
-  name: "\u30B4\u30D6\u30EA\u30F3"
-  speed: 3
-  exp: 5
+  EnemyID: 
+  name: "\u30AD\u30F3\u30B0\u30B9\u30E9\u30A4\u30E0"
+  speed: 2
+  exp: 20

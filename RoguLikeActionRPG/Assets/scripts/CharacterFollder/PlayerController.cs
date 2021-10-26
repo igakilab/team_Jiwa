@@ -45,7 +45,7 @@ public abstract class PlayerController : MonoBehaviour
 
     protected bool isControll()
     {
-        if (!anim.GetBool("death") & GameManager.instance.isGame()) return true;
+        if (!status.isDeath() && GameManager.instance.isGame()) return true;
         return false;
     }
 
@@ -155,8 +155,12 @@ public abstract class PlayerController : MonoBehaviour
     {
         if (status.getHP() < 0)
         {
-            status.setHP(0);
-            anim.SetBool("death", true);
+            status.setInvicible(false);//無敵状態を解除
+            spRen.color = new Color(1f, 1f, 1f, 1f);//透明を消す
+            status.setHP(0);//体力を0に
+            anim.SetTrigger("death");
+            status.setDeath(true);//ステータスのパラメータ状態をtrueに
+            rb2d.velocity = new Vector2(0, 0);//物体の移動速度を0に
             GameManager.instance.MessageLog.enqueueMessage("死んでしまった！");
         }
     }
@@ -235,25 +239,11 @@ public abstract class PlayerController : MonoBehaviour
                 
             }
 
-
-
         }
 
         death();
 
         //テスト用コマンド
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            status.levelup();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            status.showStatus();
-        }
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            status.addExp(15);
-        }
     }
 
 
