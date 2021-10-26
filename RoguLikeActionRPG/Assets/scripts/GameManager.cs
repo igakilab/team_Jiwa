@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     private GameObject Player;
     PlayerStatusData PlayerStatus;//プレイヤーのステータス;
+
+    [SerializeField]GameObject GameOverObject;
 
     public messageLogController MessageLog;
 
@@ -69,6 +72,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void GameOver()
+    {
+        GameOverObject.GetComponent<Text>().text = "Game Over";
+        GameOverObject.SetActive(true);//GameOverの表示
+
+        if (Input.GetKeyDown(KeyCode.Return)) SceneManager.LoadScene("Title");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,6 +105,17 @@ public class GameManager : MonoBehaviour
         if(timer.isTimeZero())
         {
             setGame(false);//ゲームを終了させる
+
+            GameOverObject.GetComponent<Text>().text = "Game Clear";
+            GameOverObject.SetActive(true);//GameOverの表示
+
+            if (Input.GetKeyDown(KeyCode.Return)) SceneManager.LoadScene("Title");
+
+        }
+
+        if(PlayerStatus.isDeath())
+        {
+            GameOver();
         }
 
     }

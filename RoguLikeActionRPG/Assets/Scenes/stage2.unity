@@ -592,6 +592,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef2f5d1b85110842977626fc2ee0622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &583580617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 756625131, guid: 68540713f9efb8c47bfc77c56befeb92, type: 3}
+  m_PrefabInstance: {fileID: 583580614}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &645074532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1251,6 +1256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starttimer: 60
   timer: {fileID: 583580615}
+  GameOverObject: {fileID: 583580617}
   MessageLog: {fileID: 583580616}
 --- !u!4 &1157621465
 Transform:

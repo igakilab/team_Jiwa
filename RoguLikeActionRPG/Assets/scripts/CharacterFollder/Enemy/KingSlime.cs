@@ -37,7 +37,7 @@ public class KingSlime : Enemy
     }
     protected override void Start()
     {
-        enemyStatus = Resources.Load<EnemyStatusData>(CO.BOSS_PREFAB_PATH+"KingSlime");
+        enemyStatus = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH+"KingSlime");
         base.Start();
     }
 

@@ -411,6 +411,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &756625131 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 756625131, guid: 68540713f9efb8c47bfc77c56befeb92, type: 3}
+  m_PrefabInstance: {fileID: 8796902592044753195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &879169464
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +721,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4267926784159816224, guid: be3d03c054226b441872a50b510b4d12, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4267926784159816224, guid: be3d03c054226b441872a50b510b4d12, type: 3}
       propertyPath: m_LocalPosition.x
@@ -861,6 +866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starttimer: 60
   timer: {fileID: 1814188893}
+  GameOverObject: {fileID: 756625131}
   MessageLog: {fileID: 160876785}
 --- !u!4 &1157621465
 Transform:
@@ -874,7 +880,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1219142793
 GameObject:

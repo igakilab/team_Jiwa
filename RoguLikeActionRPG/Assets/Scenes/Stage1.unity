@@ -719,6 +719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starttimer: 60
   timer: {fileID: 1960370393}
+  GameOverObject: {fileID: 1500244019}
   MessageLog: {fileID: 2069565810}
 --- !u!4 &1157621465
 Transform:
@@ -1105,6 +1106,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68540713f9efb8c47bfc77c56befeb92, type: 3}
+--- !u!1 &1500244019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 756625131, guid: 68540713f9efb8c47bfc77c56befeb92, type: 3}
+  m_PrefabInstance: {fileID: 1500244018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1618251644
 GameObject:
   m_ObjectHideFlags: 0
