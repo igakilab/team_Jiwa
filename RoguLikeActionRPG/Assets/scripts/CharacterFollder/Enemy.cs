@@ -19,6 +19,7 @@ public class Enemy : Character
     // </UI>
 
     Rigidbody2D rb2d;
+    SpriteRenderer spRen;
     searchPlayer searchPlayer;
  
 
@@ -41,10 +42,12 @@ public class Enemy : Character
 
         if (direction.x>0)
         {
+            spRen.flipX = false;
             speedx = enemyStatus.getSpeed();
         }
         else if(direction.x<0)
         {
+            spRen.flipX = true;
             speedx = -enemyStatus.getSpeed();
         }
 
@@ -83,6 +86,7 @@ public class Enemy : Character
         NameText = transform.Find("Canvas/Name").gameObject.GetComponent<Text>();
         searchPlayer = transform.Find("SearchArea").gameObject.GetComponent<searchPlayer>();
         rb2d = GetComponent<Rigidbody2D>();
+        spRen = transform.Find("MonsterObject").gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
