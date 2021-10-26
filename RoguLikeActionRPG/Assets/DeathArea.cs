@@ -18,7 +18,7 @@ public class DeathArea : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.CompareTag("Enemy")||collision.gameObject.CompareTag("Boss"))
         {
             Debug.Log("“G‚ð”j‰ó!");
             Destroy(collision.gameObject);

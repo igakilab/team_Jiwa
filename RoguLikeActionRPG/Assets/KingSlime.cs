@@ -14,21 +14,25 @@ public class KingSlime : Enemy
         //アニメーション、挙動;
         GameObject.FindGameObjectWithTag("Player").GetComponent<Warrior>().status.addExp(enemyStatus.getExp());//ウォーリアーのみ経験値を与える;
         GameManager.instance.addKillEnemy();
-        //log
-        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
-        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getExp() + "の経験値を入手した!");
 
-        GameManager.instance.MessageLog.enqueueMessage("なんとキングスライムは分裂してしまった！！");
-
+        //分裂
         GameObject Slime= (GameObject)Resources.Load("Prefab/Enemy/suraimu");
-
         float localX = this.transform.localPosition.x; //キングスライムのローカル座標
 
          for(int i=0;i<SPAWN_SLIME;i++)
         {
             Instantiate(Slime, new Vector2(localX + i -1, 0), Quaternion.identity).transform.parent = GameObject.Find("Enemys").transform;
         }
+
+        //log
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getExp() + "の経験値を入手した!");
+        GameManager.instance.MessageLog.enqueueMessage("なんとキングスライムは分裂してしまった！！");
+
+
         Destroy(this.gameObject);
+
+        
     }
     protected override void Start()
     {

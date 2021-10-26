@@ -160,6 +160,7 @@ public abstract class PlayerController : MonoBehaviour
             status.setHP(0);//体力を0に
             anim.SetTrigger("death");
             status.setDeath(true);//ステータスのパラメータ状態をtrueに
+            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;//オブジェクトを固定
             rb2d.velocity = new Vector2(0, 0);//物体の移動速度を0に
             GameManager.instance.MessageLog.enqueueMessage("死んでしまった！");
         }
@@ -167,13 +168,13 @@ public abstract class PlayerController : MonoBehaviour
 
     public void OnDamage(int enemyAtk)
     {
-        //ダメージ計算
-        int damage;//実際に与えるダメージ
-        damage = enemyAtk - this.status.getDef(); //ダメージ=敵の攻撃力-自身の防御力
-        if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
-
-        if (!(damage == 0))
+        if(isControll())
         {
+            //ダメージ計算
+            int damage;//実際に与えるダメージ
+            damage = enemyAtk - this.status.getDef(); //ダメージ=敵の攻撃力-自身の防御力
+            if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
+
             //無敵時間以外のときに
             if (!status.isInvicible())
             {
@@ -184,10 +185,7 @@ public abstract class PlayerController : MonoBehaviour
 
             }
         }
-        else
-        {
-            GameManager.instance.MessageLog.enqueueMessage("ダメージを与えれなかった！");
-        }
+
     }
 
     protected void getItem()
