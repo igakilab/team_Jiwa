@@ -74,7 +74,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Enemys = GameObject.Find("Enemys");//敵が出現する親オブジェクトを探す
+        Enemys=new GameObject("Enemys");//敵を格納する親オブジェクトの作成
         spawnEnabled=true;
 
         spawnEnemy(MAX_ENEMY_NUM);
