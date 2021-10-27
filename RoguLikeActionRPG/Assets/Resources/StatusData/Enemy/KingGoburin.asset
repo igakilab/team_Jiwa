@@ -16,6 +16,6 @@ MonoBehaviour:
   initAtk: 15
   initDef: 3
   EnemyID: 
-  name: "\u30AD\u30F3\u30B0\u30B4\u30D6\u30EA\u30F3"
+  Name: "\u30AD\u30F3\u30B0\u30B4\u30D6\u30EA\u30F3"
   speed: 2
   exp: 30

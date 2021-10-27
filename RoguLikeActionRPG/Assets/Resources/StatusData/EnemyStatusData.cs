@@ -8,7 +8,7 @@ public class EnemyStatusData : CharacterStatus
     [SerializeField]
     private string EnemyID;
     [SerializeField]
-    private string name; //–¼‘O
+    private string Name; //–¼‘O
     [SerializeField]
     private float speed; /*r•q«*/
     [SerializeField]
@@ -22,7 +22,7 @@ public class EnemyStatusData : CharacterStatus
 
     public string getName()
     {
-        return this.name;
+        return this.Name;
     }
     public float getSpeed()
     {

@@ -46,7 +46,7 @@ public class groundCheck : MonoBehaviour
     {
         if (collision.tag == groundTag)
         {
-           
+            isGround = true;
 
         }
 

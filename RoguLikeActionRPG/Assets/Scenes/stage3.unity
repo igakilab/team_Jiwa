@@ -739,7 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca387f86b5e6a84199594abc9bfa730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starttimer: 5
+  starttimer: 60
   timer: {fileID: 393879051}
   GameOverObject: {fileID: 1830186681}
   MessageLog: {fileID: 728786431}

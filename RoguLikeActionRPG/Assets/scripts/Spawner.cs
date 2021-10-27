@@ -34,13 +34,17 @@ public class Spawner : MonoBehaviour
 
         num = Random.Range(1, 100);
 
-        if (num <= 45)
+        if (num <= 30)
         {
             Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH+"suraimu");//スポーン対象のプレハブを読み込む
         }
-        else if (num <= 90)
+        else if (num <= 60)
         {
             Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH + "goburin");//スポーン対象のプレハブを読み込む
+        }
+        else if(num<=90)
+        {
+            Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH + "Mushroom");//スポーン対象のプレハブを読み込む
         }
         else
         {
@@ -57,6 +61,20 @@ public class Spawner : MonoBehaviour
             spawnEnemy();
         }
     }
+
+    //指定したモンスターをランダムの座標でスポーン
+    private void spawnEnemy(GameObject spawnObject)
+    {
+        float SpawnX = Random.Range(-10f, 10f);//スポーンする座標を指定した範囲内でランダムで入
+        Instantiate(spawnObject, new Vector3(SpawnX, 0f, 0f), Quaternion.identity).transform.parent = Enemys.transform;//スポーン対象のプレハブを生成
+    }
+
+    //モンスターと座標を指定してスポーン
+    private void spawnEnemy(GameObject spawnObject,Vector3 point)
+    {
+        Instantiate(spawnObject, point, Quaternion.identity).transform.parent = Enemys.transform;
+    }
+
 
     private void spawnBoss()
     {
