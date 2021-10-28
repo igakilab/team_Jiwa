@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.AI;
+using Const;
 
 public class Enemy : Character
 {
@@ -28,13 +28,22 @@ public class Enemy : Character
 
     //UŒ‚“–‚½‚è”»’è
     protected Transform checkAttack;//UŒ‚”»’èƒIƒuƒWƒFƒNƒg‚Ìƒgƒ‰ƒ“ƒXƒtƒH[ƒ€
-    protected float attackRadius = 0.4f;//UŒ‚”»’è‚Ì”¼Œa
+    public float attackRadius;//UŒ‚”»’è‚Ì”¼Œa
 
     private bool moveEnebled;//“®‚¯‚é‚©
     private bool isAttack;//UŒ‚‚Å‚«‚é‚©
     private bool isOnce = false;
 
     private bool attackDelay;
+
+    /*
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(checkAttack.position, attackRadius); 
+    }
+     */
+
 
     //UŒ‚—\”õ“®ì‚É“ü‚é
     private IEnumerator Attack()
@@ -45,15 +54,18 @@ public class Enemy : Character
             attackDelay = true;
             Debug.Log("UŒ‚—\”õ“®ì‚É“ü‚è‚Ü‚·");
             isOnce = true;
-            yield return new WaitForSeconds(2);//—\”õ“®ì‚Ì•b”
+            yield return new WaitForSeconds(CO.ATTACK_DELAY_TIME);//—\”õ“®ì‚Ì•b”
             Debug.Log("UŒ‚!!");
 
+            anim.SetBool("attack", true);
             attackCollisionDetection();//UŒ‚
             attackDelay = false;
-            spRen.color = new Color(1f, 1f, 1f, 1f);
+            spRen.color = new Color(1f, 1f, 1f, 1f);//“_–Å‚ğ‚Æ‚ß‚é
+            yield return new WaitForSeconds(0.5f);//UŒ‚Œã‚Ìd’¼
+            
             isOnce = false;
             moveEnebled = true;//“®‚¯‚é‚æ‚¤‚É‚·‚é
-            
+
         }
         
     }
@@ -68,8 +80,7 @@ public class Enemy : Character
         if(hitPlayer!=null)
         {
             int addDamage; //“G‚É—^‚¦‚éUŒ‚—Í ¦ÀÛ‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é”’l‚Í“G‚Ì–hŒä—Í‚Ì·•ª
-            //addDamage = (int)(enemyStatus.getInitAtk() * Random.Range(0.8f, 1.2f));
-            addDamage = enemyStatus.getInitAtk();
+            addDamage = (int)(enemyStatus.getInitAtk() * Random.Range(0.8f, 1.2f));
             hitPlayer.gameObject.GetComponent<Warrior>().OnDamage(addDamage); //ƒ_ƒ[ƒW‚ğ—^‚¦‚é
         }
 
@@ -197,6 +208,7 @@ public class Enemy : Character
             
         }
         
+        //UŒ‚—\”õ“®ì’†
         if(attackDelay)
         {
             float level = Mathf.Abs(Mathf.Sin(Time.time * 10));

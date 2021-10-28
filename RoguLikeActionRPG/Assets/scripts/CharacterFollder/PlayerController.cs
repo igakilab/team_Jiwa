@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Const;
 
 //キャラクターの動きについてのスクリプト
 public abstract class PlayerController : MonoBehaviour
@@ -62,7 +63,7 @@ public abstract class PlayerController : MonoBehaviour
             if (!isOnce)
             {
                 isOnce = true;
-                yield return new WaitForSeconds(3.0f);
+                yield return new WaitForSeconds(CO.PLAYER_INVICIBLE_TIME);
 
                 status.setInvicible(false);
                 spRen.color = new Color(1f, 1f, 1f, 1f);
