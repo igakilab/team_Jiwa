@@ -28,29 +28,37 @@ public class Enemy : Character
 
     //UŒ‚“–‚½‚è”»’è
     protected Transform checkAttack;//UŒ‚”»’èƒIƒuƒWƒFƒNƒg‚Ìƒgƒ‰ƒ“ƒXƒtƒH[ƒ€
-    protected float attackRadius = 0.7f;//UŒ‚”»’è‚Ì”¼Œa
+    protected float attackRadius = 0.4f;//UŒ‚”»’è‚Ì”¼Œa
 
-    public bool moveEnebled;//“®‚¯‚é‚©
-    public bool isAttack;//UŒ‚‚Å‚«‚é‚©
-    public bool isOnce = false;
+    private bool moveEnebled;//“®‚¯‚é‚©
+    private bool isAttack;//UŒ‚‚Å‚«‚é‚©
+    private bool isOnce = false;
+
+    private bool attackDelay;
 
     //UŒ‚—\”õ“®ì‚É“ü‚é
     private IEnumerator Attack()
     {
-        if(!isOnce)
+
+        if (!isOnce)
         {
+            attackDelay = true;
             Debug.Log("UŒ‚—\”õ“®ì‚É“ü‚è‚Ü‚·");
             isOnce = true;
             yield return new WaitForSeconds(2);//—\”õ“®ì‚Ì•b”
             Debug.Log("UŒ‚!!");
 
             attackCollisionDetection();//UŒ‚
+            attackDelay = false;
+            spRen.color = new Color(1f, 1f, 1f, 1f);
             isOnce = false;
             moveEnebled = true;//“®‚¯‚é‚æ‚¤‚É‚·‚é
             
         }
         
     }
+
+
 
     //UŒ‚‚Ì”»’è
     public void attackCollisionDetection()
@@ -60,7 +68,8 @@ public class Enemy : Character
         if(hitPlayer!=null)
         {
             int addDamage; //“G‚É—^‚¦‚éUŒ‚—Í ¦ÀÛ‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é”’l‚Í“G‚Ì–hŒä—Í‚Ì·•ª
-            addDamage = (int)(enemyStatus.getInitAtk() * Random.Range(0.8f, 1.2f));
+            //addDamage = (int)(enemyStatus.getInitAtk() * Random.Range(0.8f, 1.2f));
+            addDamage = enemyStatus.getInitAtk();
             hitPlayer.gameObject.GetComponent<Warrior>().OnDamage(addDamage); //ƒ_ƒ[ƒW‚ğ—^‚¦‚é
         }
 
@@ -154,6 +163,7 @@ public class Enemy : Character
         anim = monsteObject.GetComponent<Animator>();
 
         moveEnebled = true;
+        attackDelay = false;
         checkAttack = transform.Find("checkAttack").GetComponent<Transform>();//“–‚½‚è”»’èƒIƒuƒWƒFƒNƒgqƒIƒuƒWƒFƒNƒg‚æ‚è“üè
     }
 
@@ -187,6 +197,11 @@ public class Enemy : Character
             
         }
         
+        if(attackDelay)
+        {
+            float level = Mathf.Abs(Mathf.Sin(Time.time * 10));
+            spRen.color = new Color(1f, 1f, 1f, level);
+        }
     }
 
     public void OnCollisionStay2D(Collision2D collision)
