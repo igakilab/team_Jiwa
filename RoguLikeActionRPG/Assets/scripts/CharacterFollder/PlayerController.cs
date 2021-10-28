@@ -20,25 +20,26 @@ public abstract class PlayerController : MonoBehaviour
     protected Vector2 angle; //プレイヤーの向き
 
     //攻撃当たり判定
-    protected Transform checkAttack;
-    protected float attackRadius = 0.7f;
+    protected Transform checkAttack;//攻撃判定オブジェクトのトランスフォーム
+    protected float attackRadius = 0.7f;//攻撃判定の半径
 
     //実装に必要な変数
     bool isOnce = false;//コルーチンを一度のみ呼び出す変数
 
-    private void changeAngle(string angle) //引数-1 : 左, 1:   右
+    //向きの変更
+    private void changeAngle(string angle)
     {
         if (angle=="left")
         {
             this.angle = Vector2.left;
             spRen.flipX = true;
-            checkAttack.transform.localPosition = new Vector3(-0.16f, 0, 0);
+            checkAttack.transform.localPosition = new Vector3(-0.16f, 0, 0);//攻撃の当たり判定を左側に
         }
         else if(angle=="right")
         {
             this.angle = Vector2.right;
             spRen.flipX = false; //向き
-            checkAttack.transform.localPosition = new Vector3(0.16f, 0, 0);
+            checkAttack.transform.localPosition = new Vector3(0.16f, 0, 0);//攻撃の当たり判定を右側に
         }
 
     }

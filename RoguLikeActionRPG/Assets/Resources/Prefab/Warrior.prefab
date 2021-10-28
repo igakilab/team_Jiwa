@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5539027468912074978}
   - component: {fileID: 5539027468912074977}
   - component: {fileID: 5539027468912074976}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Warrior
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5539027469057443540}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: checkAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 5539027469676233789}
   - component: {fileID: 5539027469676233790}
   - component: {fileID: 5539027469676233791}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

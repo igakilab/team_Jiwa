@@ -18,6 +18,7 @@ public class Enemy : Character
     Text damageText;　//ダメージの表示
     // </UI>
 
+    //コンポーネント
     Rigidbody2D rb2d;
     SpriteRenderer spRen;
     searchPlayer searchPlayer;
@@ -25,12 +26,68 @@ public class Enemy : Character
 
     GameObject monsteObject;
 
- 
+    //攻撃当たり判定
+    protected Transform checkAttack;//攻撃判定オブジェクトのトランスフォーム
+    protected float attackRadius = 0.7f;//攻撃判定の半径
+
+    public bool moveEnebled;//動けるか
+    public bool isAttack;//攻撃できるか
+    public bool isOnce = false;
+
+    //攻撃予備動作に入る
+    private IEnumerator Attack()
+    {
+        if(!isOnce)
+        {
+            Debug.Log("攻撃予備動作に入ります");
+            isOnce = true;
+            yield return new WaitForSeconds(2);//予備動作の秒数
+            Debug.Log("攻撃!!");
+
+            attackCollisionDetection();//攻撃
+            isOnce = false;
+            moveEnebled = true;//動けるようにする
+            
+        }
+        
+    }
+
+    //攻撃の判定
+    public void attackCollisionDetection()
+    {
+
+        Collider2D hitPlayer = Physics2D.OverlapCircle(checkAttack.position, attackRadius, LayerMask.GetMask("Player"));//攻撃当たり判定内の敵オブジェクトを入手
+        if(hitPlayer!=null)
+        {
+            int addDamage; //敵に与える攻撃力 ※実際にダメージを与える数値は敵の防御力の差分
+            addDamage = (int)(enemyStatus.getInitAtk() * Random.Range(0.8f, 1.2f));
+            hitPlayer.gameObject.GetComponent<Warrior>().OnDamage(addDamage); //ダメージを与える
+        }
+
+
+    }
+
+
 
     private void EnemyUICtrl()
     {
         HPvar.value = (float)this.hp / (float)enemyStatus.getInitMaxHP(); //HPバーの更新
         NameText.text = enemyStatus.getName();//名前
+
+    }
+
+    private void changeAngle(string angle)
+    {
+        if (angle == "left")
+        {
+            spRen.flipX = true;
+            checkAttack.transform.localPosition = new Vector3(-1, 0, 0);//攻撃の当たり判定を右側に
+        }
+        else if (angle == "right")
+        {
+            spRen.flipX = false; //向き
+            checkAttack.transform.localPosition = new Vector3(1, 0, 0);//攻撃の当たり判定を左側に
+        }
 
     }
 
@@ -44,18 +101,18 @@ public class Enemy : Character
         //Debug.Log(string.Format("方向{0:#}",direction.x));
         // Debug.Log(string.Format("{0:#},{1:#},{2:#}",Player.transform.position.x, Player.transform.position.y, Player.transform.position.z));
 
-        if (direction.x>0)
+        if (direction.x>0)//プレイヤーの方向が自分から右側
         {
-            spRen.flipX = false;
+            changeAngle("right");//敵の向き変更
             speedx = enemyStatus.getSpeed();
         }
-        else if(direction.x<0)
+        else if(direction.x<0)//プレイヤーの方向が自分から左側
         {
-            spRen.flipX = true;
+            changeAngle("left");
             speedx = -enemyStatus.getSpeed();
         }
 
-        anim.SetBool("walk", true);
+        anim.SetBool("walk", true);//歩くアニメーション
         rb2d.velocity = new Vector2(speedx, rb2d.velocity.y);
     }
 
@@ -86,7 +143,7 @@ public class Enemy : Character
 
     protected virtual void Start()
     {
-        monsteObject = transform.Find("MonsterObject").gameObject;
+        monsteObject = transform.Find("MonsterObject").gameObject;//モンスターオブジェクト入手
 
         hp = enemyStatus.getInitMaxHP();
         HPvar = transform.Find("Canvas/HPBar").gameObject.GetComponent<Slider>();
@@ -95,6 +152,9 @@ public class Enemy : Character
         rb2d = GetComponent<Rigidbody2D>();
         spRen = monsteObject.GetComponent<SpriteRenderer>();
         anim = monsteObject.GetComponent<Animator>();
+
+        moveEnebled = true;
+        checkAttack = transform.Find("checkAttack").GetComponent<Transform>();//当たり判定オブジェクト子オブジェクトより入手
     }
 
     // Update is called once per frame
@@ -109,7 +169,7 @@ public class Enemy : Character
         }
 
         //感知範囲内
-        if(searchPlayer.getIsPlayer())
+        if(searchPlayer.getIsPlayer()&&moveEnebled)
         {
             chasePlayer();
         }
@@ -118,6 +178,14 @@ public class Enemy : Character
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
             anim.SetBool("walk", false);
         }
+
+        //攻撃範囲内にプレイヤーが入ったら
+        if(checkAttack.gameObject.GetComponent<isPlayer>().getisPlayer())
+        {
+            moveEnebled = false;//止める
+            StartCoroutine(Attack());//攻撃の開始
+            
+        }
         
     }
 
@@ -125,7 +193,7 @@ public class Enemy : Character
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Warrior>().OnDamage(enemyStatus.getInitAtk());
+            //collision.gameObject.GetComponent<Warrior>().OnDamage(enemyStatus.getInitAtk());
 
         }
     }
