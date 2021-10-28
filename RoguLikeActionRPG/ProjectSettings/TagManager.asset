@@ -9,6 +9,7 @@ TagManager:
   - Item
   - Enemy
   - Boss
+  - StageButton
   layers:
   - Default
   - TransparentFX
