@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: mushroom
   m_EditorClassIdentifier: 
   initMaxHP: 9
-  initAtk: 6
+  initAtk: 7
   initDef: 3
   EnemyID: 
   Name: "\u304D\u306E\u3053"

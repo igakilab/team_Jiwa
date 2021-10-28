@@ -18,7 +18,7 @@ public class Warrior : PlayerController
     //攻撃アニメーション時に呼び出される
     public void attackCollisionDetection()
     {
-        Collider2D[] hitEnemys = Physics2D.OverlapCircleAll(checkAttack.position, attackRadius, LayerMask.GetMask("Enemy"));
+        Collider2D[] hitEnemys = Physics2D.OverlapCircleAll(checkAttack.position, attackRadius, LayerMask.GetMask("Enemy"));//攻撃当たり判定内の敵オブジェクトを入手
 
         //攻撃iが当たった全ての敵に対して
         foreach (Collider2D hitEnemy in hitEnemys)

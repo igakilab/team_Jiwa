@@ -15,6 +15,9 @@ namespace Const
         public static int SPAWN_TIME = 2;   //敵のスポーン時間
         public static int BOSS_APPEARANCE_CON = 10;//ボスの出現条件
 
-        public static int SPAWN_SLIME = 4;//キングスライム倒した際のスライムの出現数
+        public static int SPAWN_SLIME = 10;//キングスライム倒した際のスライムの出現数
+        public static float ATTACK_DELAY_TIME = 1;//敵の攻撃予備動作時間
+
+        public static float PLAYER_INVICIBLE_TIME = 2;
     }
 }
