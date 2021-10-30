@@ -212,12 +212,12 @@ public abstract class PlayerController : Character
 
         }
 
-        if(status.getHP()<=0)   death();
+        
+        if(status.getHP()<=0 && !status.isDeath())   death();
 
-        //テスト用コマンド
-        if(Input.GetKeyDown(KeyCode.J))
+        if(Input.GetKeyDown(KeyCode.I))
         {
-            death();
+            OnDamage(100);
         }
 
 

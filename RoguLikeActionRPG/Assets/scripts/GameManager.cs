@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
 
     bool showRanking = false;
 
-    public float starttimer; //タイマーの開始時間
-
     public Timer timer; //タイマーオブジェクト
 
     private GameObject PlayerObject;//プレイヤーオブジェクト
