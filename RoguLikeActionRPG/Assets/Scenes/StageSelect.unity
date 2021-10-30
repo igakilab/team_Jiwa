@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 312398667}
   - component: {fileID: 312398669}
   - component: {fileID: 312398668}
+  - component: {fileID: 312398670}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -644,6 +645,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312398666}
   m_CullTransparentMesh: 1
+--- !u!114 &312398670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312398666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b7db10ee2ab694f9d8f34aa0f82293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 312398668}
+  sprits:
+  - {fileID: 21300000, guid: f7c372f8a14dda04ab762b7ec1fbf338, type: 3}
+  - {fileID: 21300000, guid: ea50ddc48b548c14990a9c4a290ab140, type: 3}
+  - {fileID: 21300000, guid: 996ec3d0b49e5c64ba8be52823edeb80, type: 3}
+  st: {fileID: 164427185}
 --- !u!114 &388324709 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2917369157154255195, guid: 34bbdaa9c95a7cc4a861425b4ae38cd1, type: 3}
@@ -1150,7 +1169,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1273601143
 RectTransform:
@@ -1251,7 +1270,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &1504116244
 RectTransform:
