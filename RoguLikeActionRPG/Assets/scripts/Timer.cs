@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Const;
 
 public class Timer : MonoBehaviour
 {
@@ -23,7 +24,22 @@ public class Timer : MonoBehaviour
     void Start()
     {
         timerText = this.gameObject.GetComponent<Text>();
-        totalTime = GameManager.instance.starttimer;
+
+        switch(stageSelector.stage)
+        {
+            case 1:
+                totalTime = CO.STAGE1_TIME;
+                break;
+            case 2:
+                totalTime = CO.STAGE2_TIME;
+                break;
+            case 3:
+                totalTime = CO.STAGE3_TIME;
+                break;
+            default:
+                totalTime = 60;
+                break;
+        }
     }
 
     // Update is called once per frame

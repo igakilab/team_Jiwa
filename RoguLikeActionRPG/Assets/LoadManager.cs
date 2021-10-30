@@ -20,9 +20,10 @@ public class LoadManager : MonoBehaviour
         for(int i=0;i<Hint.transform.childCount;i++)
         {
             HintList.Add(Hint.transform.GetChild(i).gameObject);
+            Hint.transform.GetChild(i).gameObject.SetActive(false);//Hintオブジェクトをすべて非表示に
         }
 
-       HintList[Random.Range(0, HintList.Count)].SetActive(true);
+       HintList[Random.Range(0, HintList.Count)].SetActive(true);//ランダムで選ばれたヒントを表示する
     }
 
     // Update is called once per frame
@@ -36,10 +37,7 @@ public class LoadManager : MonoBehaviour
         //ゲージがたまったら
         if(load.value>=1)
         {
-            if(Input.GetKeyDown(KeyCode.Return))
-            {
-                SceneManager.LoadScene("stage"+stageSelector.stage);
-            }
+            SceneManager.LoadScene("stage" + stageSelector.stage);
         }
     }
 }

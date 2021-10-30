@@ -19,5 +19,9 @@ namespace Const
         public static float ATTACK_DELAY_TIME = 1;//“G‚ÌUŒ‚—\”õ“®ìŠÔ
 
         public static float PLAYER_INVICIBLE_TIME = 2;
+
+        public static int STAGE1_TIME = 60;
+        public static int STAGE2_TIME = 90;
+        public static int STAGE3_TIME = 120;
     }
 }
