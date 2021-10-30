@@ -11,9 +11,9 @@ public class KingSlime : Enemy
 
     protected override void death()
     {
-        hp = 0;
+        status.setHP(0);
         //アニメーション、挙動;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Warrior>().status.addExp(enemyStatus.getExp());//ウォーリアーのみ経験値を与える;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().status.addExp(enemyStatusData.getExp());//ウォーリアーのみ経験値を与える;
         GameManager.instance.addKillEnemy();
 
         //分裂
@@ -26,8 +26,8 @@ public class KingSlime : Enemy
         }
 
         //log
-        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
-        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getExp() + "の経験値を入手した!");
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getName() + "を倒した！");
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getExp() + "の経験値を入手した!");
         GameManager.instance.MessageLog.enqueueMessage("なんとキングスライムは分裂してしまった！！");
 
 
@@ -37,7 +37,7 @@ public class KingSlime : Enemy
     }
     protected override void Start()
     {
-        enemyStatus = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH+"KingSlime");
+        enemyStatusData = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH+"KingSlime");
         base.Start();
     }
 

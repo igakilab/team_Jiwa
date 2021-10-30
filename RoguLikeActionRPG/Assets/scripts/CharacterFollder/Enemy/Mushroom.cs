@@ -7,7 +7,7 @@ public class Mushroom : Enemy
 {
     protected override void Start()
     {
-        enemyStatus = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH + "mushroom");
+        enemyStatusData = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH + "mushroom");
         base.Start();
     }
 

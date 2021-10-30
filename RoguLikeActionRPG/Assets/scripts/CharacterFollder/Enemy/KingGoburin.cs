@@ -7,7 +7,7 @@ public class KingGoburin : Enemy
 {
     protected override void Start()
     {
-        enemyStatus = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH+"KingGoburin");
+        enemyStatusData = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH+"KingGoburin");
         base.Start();
     }
 

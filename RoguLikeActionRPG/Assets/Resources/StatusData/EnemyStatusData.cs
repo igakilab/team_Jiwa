@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class EnemyStatusData : CharacterStatus
+public class EnemyStatusData : CharacterStatusData
 {
     [SerializeField]
     private string EnemyID;

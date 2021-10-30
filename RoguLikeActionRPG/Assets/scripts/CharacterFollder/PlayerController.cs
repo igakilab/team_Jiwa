@@ -4,25 +4,19 @@ using UnityEngine;
 using Const;
 
 //キャラクターの動きについてのスクリプト
-public abstract class PlayerController : MonoBehaviour
+public abstract class PlayerController : Character
 {
 
     // <コンポーネント>
-    protected Rigidbody2D rb2d = null;
-    protected Animator anim = null;
-    protected SpriteRenderer spRen;
-    public groundCheck ground;
+    
+    
     //</コンポーネント>
 
     //プレイヤー情報
-    public PlayerStatusData status; //ステータス
-    public float jumpPower; //ジャンプ力
+    public PlayerStatusData playerStatusData; //初期ステータス
+    public PlayerStatus status; //ステータス
     public float speed; //移動スピード
     protected Vector2 angle; //プレイヤーの向き
-
-    //攻撃当たり判定
-    protected Transform checkAttack;//攻撃判定オブジェクトのトランスフォーム
-    protected float attackRadius = 0.7f;//攻撃判定の半径
 
     //実装に必要な変数
     bool isOnce = false;//コルーチンを一度のみ呼び出す変数
@@ -74,20 +68,10 @@ public abstract class PlayerController : MonoBehaviour
 
     private void init()
     {
-        status.initialize();//ステータス初期化
         angle = Vector2.right;//スタート時点のプレイヤーの向き
     }
 
     // <PlayerMotion>
-    private void Jump()
-    {
-        if (ground.getIsGround())
-        {
-            rb2d.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
-            anim.SetBool("jump", true);
-        }
-    }
-
     private void move()
     {
         float horizontalKey = Input.GetAxis("Horizontal");
@@ -141,21 +125,13 @@ public abstract class PlayerController : MonoBehaviour
         rb2d.velocity = new Vector2(xSpeed, rb2d.velocity.y);
     }
 
-    /*落下モーション*/
-    private void fall()
-    {
-        float velY = rb2d.velocity.y;
-        if (velY < 0.5f && !ground.getIsGround())
-        {
-            anim.SetBool("fall", true);
-        }
-    }
+
 
     protected abstract void attack();
 
-    protected void death()
+    protected override void death()
     {
-        if (status.getHP() < 0)
+        if (status.getHP() <= 0)
         {
             status.setInvicible(false);//無敵状態を解除
             spRen.color = new Color(1f, 1f, 1f, 1f);//透明を消す
@@ -196,36 +172,34 @@ public abstract class PlayerController : MonoBehaviour
     }
     // </PlayerMotion>
 
-   protected virtual void Start()
+   protected override void Start()
     {
+        base.Start();
         //コンポーネント
-        rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spRen = GetComponent<SpriteRenderer>();
-        checkAttack = transform.Find("checkAttack").GetComponent<Transform>(); //攻撃判定オブジェクトを子オブジェクトより入手
-
         init();//初期化
+
+        status = new PlayerStatus(playerStatusData);
 
 
     }
 
-    protected virtual void Update()
+    protected override void Update()
     {
         if (isControll())//プレイヤー操作条件
         {
+            base.Update();
             move();
 
             StartCoroutine(Condition());
 
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
             }
 
-            
-            fall();//落下モーション
-
-            if (Input.GetKeyDown(KeyCode.V))
+            if (Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(0))
             {
                 attack();
 

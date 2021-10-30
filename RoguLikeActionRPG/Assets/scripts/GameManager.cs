@@ -18,8 +18,9 @@ public class GameManager : MonoBehaviour
 
     public Timer timer; //タイマーオブジェクト
 
-    private GameObject Player;
-    PlayerStatusData PlayerStatus;//プレイヤーのステータス;
+    private GameObject PlayerObject;//プレイヤーオブジェクト
+
+    PlayerController player;//プレイヤースクリプト
 
     [SerializeField]GameObject GameOverObject;
 
@@ -50,11 +51,11 @@ public class GameManager : MonoBehaviour
 
     private void UICtrl()
     {
-        PlayerHPText.text = PlayerStatus.getHP().ToString(); //プレイヤーの体力を随時更新
-        PlayerHPVar.value = (float)PlayerStatus.getHP() / (float)PlayerStatus.getMaxHP();
+        PlayerHPText.text = player.status.getHP().ToString(); //プレイヤーの体力を随時更新
+        PlayerHPVar.value = (float)player.status.getHP() / (float)player.status.getMaxHP();
 
-        ExpText.text = string.Format("{0}/{1}", PlayerStatus.getExp(), PlayerStatus.getNeedExp());
-        ExpBar.value = (float)PlayerStatus.getExp() / (float)PlayerStatus.getNeedExp();
+        ExpText.text = string.Format("{0}/{1}", player.status.getExp(), player.status.getNeedExp());
+        ExpBar.value = (float)player.status.getExp() / (float)player.status.getNeedExp();
 
         
     }
@@ -83,14 +84,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player"); //プレイヤーオブジェクトを探す
+        PlayerObject = GameObject.FindGameObjectWithTag("Player"); //プレイヤーオブジェクトを探す
 
         PlayerHPVar = GameObject.Find("UI/PlayerHP/HPvar").GetComponent<Slider>();
         PlayerHPText = GameObject.Find("UI/PlayerHP/HPText").GetComponent<Text>();
         ExpBar = GameObject.Find("UI/Exp/ExpBar").GetComponent<Slider>();
         ExpText = GameObject.Find("UI/Exp/ExpText").GetComponent<Text>();
 
-        PlayerStatus = Player.GetComponent<Warrior>().status; //wariorを参照
+        player = PlayerObject.GetComponent<PlayerController>();
 
         setGame(true);
 
@@ -113,7 +114,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if(PlayerStatus.isDeath())
+        if(player.status.isDeath())
         {
             GameOver();
         }

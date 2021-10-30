@@ -8,7 +8,7 @@ public class Bandit : Enemy
     // Start is called before the first frame update
     protected override void Start()
     {
-        enemyStatus = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH + "Bandit");
+        enemyStatusData = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH + "Bandit");
         base.Start();
     }
 

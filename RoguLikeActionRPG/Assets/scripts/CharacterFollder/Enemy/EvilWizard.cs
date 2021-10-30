@@ -8,7 +8,7 @@ public class EvilWizard : Enemy
     // Start is called before the first frame update
     protected override void Start()
     {
-        enemyStatus = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH + "EvilWizard");
+        enemyStatusData = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH + "EvilWizard");
         base.Start();
     }
 

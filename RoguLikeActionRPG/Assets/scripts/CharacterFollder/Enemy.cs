@@ -7,10 +7,8 @@ using Const;
 public class Enemy : Character
 {
     //固定ステータス
-    protected EnemyStatusData enemyStatus;
-
-    //動的ステータス
-    protected int hp; //敵の現在のHP
+    protected EnemyStatusData enemyStatusData;//初期ステータス
+    public EnemyStatus status;
 
     // <UI>
     Slider HPvar; /*体力バー*/
@@ -19,22 +17,16 @@ public class Enemy : Character
     // </UI>
 
     //コンポーネント
-    Rigidbody2D rb2d;
-    SpriteRenderer spRen;
     searchPlayer searchPlayer;
-    Animator anim;
+    
 
     GameObject monsteObject;
-
-    //攻撃当たり判定
-    protected Transform checkAttack;//攻撃判定オブジェクトのトランスフォーム
-    public float attackRadius;//攻撃判定の半径
 
     private bool moveEnebled;//動けるか
     private bool isAttack;//攻撃できるか
     private bool isOnce = false;
 
-    private bool attackDelay;
+    private bool attackDelay;//攻撃予備動作中か
 
     /*
     private void OnDrawGizmos()
@@ -69,9 +61,6 @@ public class Enemy : Character
         }
         
     }
-
-
-
     //攻撃の判定
     public void attackCollisionDetection()
     {
@@ -80,7 +69,7 @@ public class Enemy : Character
         if(hitPlayer!=null)
         {
             int addDamage; //敵に与える攻撃力 ※実際にダメージを与える数値は敵の防御力の差分
-            addDamage = (int)(enemyStatus.getInitAtk() * Random.Range(0.8f, 1.2f));
+            addDamage = (int)(status.getAtk() * Random.Range(0.8f, 1.2f));
             hitPlayer.gameObject.GetComponent<Warrior>().OnDamage(addDamage); //ダメージを与える
         }
 
@@ -91,8 +80,8 @@ public class Enemy : Character
 
     private void EnemyUICtrl()
     {
-        HPvar.value = (float)this.hp / (float)enemyStatus.getInitMaxHP(); //HPバーの更新
-        NameText.text = enemyStatus.getName();//名前
+        HPvar.value = (float)status.getHP() / (float)status.getMaxHP(); //HPバーの更新
+        NameText.text = enemyStatusData.getName();//名前
 
     }
 
@@ -124,12 +113,12 @@ public class Enemy : Character
         if (direction.x>0)//プレイヤーの方向が自分から右側
         {
             changeAngle("right");//敵の向き変更
-            speedx = enemyStatus.getSpeed();
+            speedx = enemyStatusData.getSpeed();
         }
         else if(direction.x<0)//プレイヤーの方向が自分から左側
         {
             changeAngle("left");
-            speedx = -enemyStatus.getSpeed();
+            speedx = -enemyStatusData.getSpeed();
         }
 
         anim.SetBool("walk", true);//歩くアニメーション
@@ -139,51 +128,55 @@ public class Enemy : Character
     public void onDamage(int enemyAtk)
     {
         int damage;//実際に与えるダメージ
-        damage = enemyAtk - this.enemyStatus.getInitDef(); //ダメージ=敵の攻撃力-自身の防御力
+        damage = enemyAtk - this.status.getDef(); //ダメージ=敵の攻撃力-自身の防御力
         if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
-        this.hp=this.hp - damage; //残りの体力をHPにセット
+        this.status.setHP(status.getHP()-damage); //残りの体力をHPにセット
 
         //log
-        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "に" + damage + "ダメージ与えた！");
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getName() + "に" + damage + "ダメージ与えた！");
 
     }
 
-    protected virtual void death()
+    protected override void death()
     {
-        hp=0;
+        status.setHP(0);
         //アニメーション、挙動;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Warrior>().status.addExp(enemyStatus.getExp());//ウォーリアーのみ経験値を与える;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().status.addExp(enemyStatusData.getExp());//ウォーリアーのみ経験値を与える;
         GameManager.instance.addKillEnemy();
         //log
-        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getName() + "を倒した！");
-        GameManager.instance.MessageLog.enqueueMessage(enemyStatus.getExp() + "の経験値を入手した!");
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getName() + "を倒した！");
+        GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getExp() + "の経験値を入手した!");
 
         Destroy(this.gameObject);
     }
 
-    protected virtual void Start()
+    protected override void Start()
     {
+        base.Start();
         monsteObject = transform.Find("MonsterObject").gameObject;//モンスターオブジェクト入手
 
-        hp = enemyStatus.getInitMaxHP();
         HPvar = transform.Find("Canvas/HPBar").gameObject.GetComponent<Slider>();
         NameText = transform.Find("Canvas/Name").gameObject.GetComponent<Text>();
         searchPlayer = transform.Find("SearchArea").gameObject.GetComponent<searchPlayer>();
-        rb2d = GetComponent<Rigidbody2D>();
+
         spRen = monsteObject.GetComponent<SpriteRenderer>();
         anim = monsteObject.GetComponent<Animator>();
 
+        status = new EnemyStatus(enemyStatusData);
+
         moveEnebled = true;
         attackDelay = false;
-        checkAttack = transform.Find("checkAttack").GetComponent<Transform>();//当たり判定オブジェクト子オブジェクトより入手
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected override void Update()
     {
+        int jumpNum = Random.Range(1, 11);
+
+   
         EnemyUICtrl();
 
-        if (hp <= 0)
+        if (status.getHP() <= 0)
         {
             death();
 
@@ -213,15 +206,6 @@ public class Enemy : Character
         {
             float level = Mathf.Abs(Mathf.Sin(Time.time * 10));
             spRen.color = new Color(1f, 1f, 1f, level);
-        }
-    }
-
-    public void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            //collision.gameObject.GetComponent<Warrior>().OnDamage(enemyStatus.getInitAtk());
-
         }
     }
 
