@@ -69,8 +69,8 @@ public class Enemy : Character
         if(hitPlayer!=null)
         {
             int addDamage; //敵に与える攻撃力 ※実際にダメージを与える数値は敵の防御力の差分
-            addDamage = (int)(status.getAtk() * Random.Range(0.8f, 1.2f));
-            hitPlayer.gameObject.GetComponent<Warrior>().OnDamage(addDamage); //ダメージを与える
+            addDamage = (int)Mathf.Ceil(status.getAtk() * Random.Range(0.8f, 1.2f));
+            hitPlayer.gameObject.GetComponent<PlayerController>().OnDamage(addDamage); //ダメージを与える
         }
 
 
@@ -143,6 +143,7 @@ public class Enemy : Character
         //アニメーション、挙動;
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().status.addExp(enemyStatusData.getExp());//ウォーリアーのみ経験値を与える;
         GameManager.instance.addKillEnemy();
+        GameManager.instance.score += enemyStatusData.getPoint();
         //log
         GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getName() + "を倒した！");
         GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getExp() + "の経験値を入手した!");

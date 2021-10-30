@@ -131,8 +131,6 @@ public abstract class PlayerController : Character
 
     protected override void death()
     {
-        if (status.getHP() <= 0)
-        {
             status.setInvicible(false);//無敵状態を解除
             spRen.color = new Color(1f, 1f, 1f, 1f);//透明を消す
             status.setHP(0);//体力を0に
@@ -141,7 +139,6 @@ public abstract class PlayerController : Character
             rb2d.constraints = RigidbodyConstraints2D.FreezeAll;//オブジェクトを固定
             rb2d.velocity = new Vector2(0, 0);//物体の移動速度を0に
             GameManager.instance.MessageLog.enqueueMessage("死んでしまった！");
-        }
     }
 
     public void OnDamage(int enemyAtk)
@@ -215,9 +212,15 @@ public abstract class PlayerController : Character
 
         }
 
-        death();
+        if(status.getHP()<=0)   death();
 
         //テスト用コマンド
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            death();
+        }
+
+
     }
 
 
