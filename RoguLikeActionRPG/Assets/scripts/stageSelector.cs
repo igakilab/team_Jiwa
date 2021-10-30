@@ -11,7 +11,7 @@ public class stageSelector : MonoBehaviour
     public Button FirstSelectButton;
     public GameObject btn;
 
-    public static int stage=0;
+    public static int stage=0;//初期値テストステージ
 
     private Button prev_selected;
 
@@ -27,7 +27,7 @@ public class stageSelector : MonoBehaviour
     {
         Debug.Log("go to stage " + number + "!");
         stage = number;
-        SceneManager.LoadScene("Stage" + number);
+        SceneManager.LoadScene("load");
         
     }
 

@@ -407,7 +407,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3257365193633712957, guid: b04652e2e89c1b64288bd7be1bb202f8, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3257365193633712957, guid: b04652e2e89c1b64288bd7be1bb202f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -559,7 +559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8796902593200865758, guid: 68540713f9efb8c47bfc77c56befeb92, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8796902593200865758, guid: 68540713f9efb8c47bfc77c56befeb92, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1352,6 +1352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  stage: 0
   starttimer: 60
   timer: {fileID: 583580615}
   GameOverObject: {fileID: 583580617}
@@ -1368,7 +1369,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1219142793
 GameObject:
