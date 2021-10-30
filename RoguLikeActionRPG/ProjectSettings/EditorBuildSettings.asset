@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/stage3.unity
     guid: 1b5e5d5b35376224c80b3421b7d0b2c5
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 9529ce4f9bbc18f4195d48052615602d
+  - enabled: 1
+    path: Assets/Ranking/naichilab/unity-simple-ranking/Scenes/Ranking.unity
+    guid: 152244f5855414ac4a3874f14efa583c
   m_configObjects: {}

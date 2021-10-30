@@ -11,6 +11,8 @@ public class stageSelector : MonoBehaviour
     public Button FirstSelectButton;
     public GameObject btn;
 
+    public static int stage=0;
+
     private Button prev_selected;
 
     void Start()
@@ -19,10 +21,14 @@ public class stageSelector : MonoBehaviour
         btn = EventSystem.current.currentSelectedGameObject;
     }
 
+
+
     public void OnClick(int number)
     {
         Debug.Log("go to stage " + number + "!");
+        stage = number;
         SceneManager.LoadScene("Stage" + number);
+        
     }
 
     public void Update()

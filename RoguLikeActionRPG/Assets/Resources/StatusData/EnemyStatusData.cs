@@ -13,7 +13,13 @@ public class EnemyStatusData : CharacterStatusData
     private float speed; /*r•q«*/
     [SerializeField]
     private int exp;//ŒoŒ±’l
+    [SerializeField]
+    private int point;
 
+    public int getPoint()
+    {
+        return point;
+    }
 
     public int getExp()
     {
