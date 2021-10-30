@@ -663,7 +663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626614846987650873, guid: 0e5976ee8b294ba47b8b7b37986b0474, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626614846987650875, guid: 0e5976ee8b294ba47b8b7b37986b0474, type: 3}
       propertyPath: m_RootOrder
@@ -806,6 +806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  stage: 0
   starttimer: 60
   timer: {fileID: 393879051}
   GameOverObject: {fileID: 1830186681}
