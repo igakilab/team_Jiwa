@@ -150,15 +150,22 @@ public abstract class PlayerController : Character
             damage = enemyAtk - this.status.getDef(); //ダメージ=敵の攻撃力-自身の防御力
             if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
 
-            //無敵時間以外のときに
-            if (!status.isInvicible())
+            if (!(damage == 0))
             {
-                status.setHP(status.getHP() - damage);
-                GameManager.instance.MessageLog.enqueueMessage(damage + "ダメージくらった");//メッセージログ
+                //無敵時間以外のときに
+                if (!status.isInvicible())
+                {
+                    status.setHP(status.getHP() - damage);
+                    GameManager.instance.MessageLog.enqueueMessage(damage + "ダメージくらった");//メッセージログ
 
-                status.setInvicible(true);//無敵時間ON
+                    status.setInvicible(true);//無敵時間ON
 
+                }
             }
+            else GameManager.instance.MessageLog.enqueueMessage("ダメージをくらわなかった！");
+
+
+
         }
 
     }
@@ -217,7 +224,7 @@ public abstract class PlayerController : Character
 
         if(Input.GetKeyDown(KeyCode.I))
         {
-            OnDamage(100);
+            OnDamage(0);
         }
 
 

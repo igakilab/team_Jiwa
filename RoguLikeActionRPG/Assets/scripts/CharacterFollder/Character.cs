@@ -15,6 +15,16 @@ public abstract class Character : MonoBehaviour
     protected Transform checkAttack;//攻撃判定オブジェクトのトランスフォーム
     protected float attackRadius=0.7f;//攻撃判定の半径
 
+    public Transform getCheckAttack()
+    {
+        return checkAttack;
+    }
+
+    public float getAttackRadius()
+    {
+        return attackRadius;
+    }
+
     protected void Jump()
     {
         if (ground.getIsGround())
@@ -40,6 +50,7 @@ public abstract class Character : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         checkAttack = transform.Find("checkAttack").GetComponent<Transform>(); //攻撃判定オブジェクトを子オブジェクトより入手
+        
 
     }
 

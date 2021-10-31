@@ -88,6 +88,23 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return)) SceneManager.LoadScene("Title");
     }
 
+    private void GameClear()
+    {
+        setGame(false);//ゲームを終了させる
+
+        GameOverObject.GetComponent<Text>().text = "Game Clear";
+        GameOverObject.SetActive(true);//GameOverの表示
+
+        if (!showRanking)
+        {
+            naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score, stage);
+            showRanking = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return)) SceneManager.LoadScene("Title");
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -113,20 +130,9 @@ public class GameManager : MonoBehaviour
     {
         UICtrl();
 
-        if (timer.isTimeZero() || Input.GetKeyDown(KeyCode.O))
+        if (timer.isTimeZero())
         {
-            setGame(false);//ゲームを終了させる
-
-            GameOverObject.GetComponent<Text>().text = "Game Clear";
-            GameOverObject.SetActive(true);//GameOverの表示
-
-            if (!showRanking)
-            {
-                naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score, stage);
-                showRanking = true;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Return)) SceneManager.LoadScene("Title");
+            GameClear();
 
         }
 

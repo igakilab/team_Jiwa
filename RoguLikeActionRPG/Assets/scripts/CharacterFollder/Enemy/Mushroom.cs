@@ -7,6 +7,8 @@ public class Mushroom : Enemy
 {
     protected override void Start()
     {
+        EnemyAttackPosition_Right = new Vector3(1, 0, 0);
+        EnemyAttackPosition_Left = new Vector3(-0.1f, 0, 0);
         enemyStatusData = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH + "mushroom");
         base.Start();
     }
