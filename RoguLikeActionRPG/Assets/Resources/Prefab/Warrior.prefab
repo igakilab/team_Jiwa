@@ -129,6 +129,7 @@ MonoBehaviour:
   levelUpSound: {fileID: 8300000, guid: 2077d1a1fab056a438f1402d4273db45, type: 3}
   playerStatusData: {fileID: 11400000, guid: 4f4d7164ff16c034e85f7dc202c7306d, type: 2}
   speed: 7
+  CriticalAttackSound: {fileID: 8300000, guid: 165b9dbcc8841c0488e00b1c828159a1, type: 3}
 --- !u!50 &5539027468912074977
 Rigidbody2D:
   serializedVersion: 4

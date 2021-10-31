@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Warrior : PlayerController
 {
+    public AudioClip CriticalAttackSound;
     protected override void attack()
     {
         //ジャンプ以外
@@ -30,10 +31,18 @@ public class Warrior : PlayerController
             foreach (Collider2D hitEnemy in hitEnemys)
             {
                 int addDamage; //敵に与える攻撃力 ※実際にダメージを与える数値は敵の防御力の差分
+                bool critical=false;
                 addDamage = (int)(status.getAtk() * Random.Range(0.8f, 1.2f));
+                if (Random.Range(1, 34) == 1)
+                {
+                    addDamage = addDamage * 2;//クリティカルヒット;
+                    critical = true;
+                }
+                    
                 hitEnemy.gameObject.GetComponent<Enemy>().onDamage(addDamage); //ダメージを与える
                 hitEnemy.gameObject.GetComponent<Rigidbody2D>().AddForce(angle * 3f, ForceMode2D.Impulse);//ノックバック
-                audioSource.PlayOneShot(attackSound);
+                if (critical) audioSource.PlayOneShot(CriticalAttackSound);
+                else audioSource.PlayOneShot(attackSound);
 
             }
         }
