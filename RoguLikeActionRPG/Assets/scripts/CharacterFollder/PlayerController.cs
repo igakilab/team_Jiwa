@@ -21,6 +21,8 @@ public abstract class PlayerController : Character
     //実装に必要な変数
     bool isOnce = false;//コルーチンを一度のみ呼び出す変数
 
+    public bool isRecover;//回復できるかどうか
+
     //向きの変更
     private void changeAngle(string angle)
     {
@@ -43,6 +45,16 @@ public abstract class PlayerController : Character
     {
         if (!status.isDeath() && GameManager.instance.isGame()) return true;
         return false;
+    }
+
+    public bool getRecover()
+    {
+        return isRecover;
+    }
+
+    public void setRecover(bool tf)
+    {
+        this.isRecover = tf;
     }
 
     private IEnumerator Condition()
@@ -69,6 +81,7 @@ public abstract class PlayerController : Character
     private void init()
     {
         angle = Vector2.right;//スタート時点のプレイヤーの向き
+        isRecover = true;//回復ON
     }
 
     // <PlayerMotion>
@@ -85,7 +98,7 @@ public abstract class PlayerController : Character
             changeAngle("right");
 
             //ダッシュ
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey("joystick button 8"))
             {
                 anim.SetBool("dash", true);
                 xSpeed = speed * 1.2f;
@@ -104,7 +117,7 @@ public abstract class PlayerController : Character
             changeAngle("left");
 
             //ダッシュ
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey("joystick button 8"))
             {
                 anim.SetBool("dash", true);
                 xSpeed = -speed * 1.2f;
@@ -150,15 +163,22 @@ public abstract class PlayerController : Character
             damage = enemyAtk - this.status.getDef(); //ダメージ=敵の攻撃力-自身の防御力
             if (damage < 0) damage = 0;//ダメージが負である場合は0ダメージ
 
-            //無敵時間以外のときに
-            if (!status.isInvicible())
+            if (!(damage == 0))
             {
-                status.setHP(status.getHP() - damage);
-                GameManager.instance.MessageLog.enqueueMessage(damage + "ダメージくらった");//メッセージログ
+                //無敵時間以外のときに
+                if (!status.isInvicible())
+                {
+                    status.setHP(status.getHP() - damage);
+                    GameManager.instance.MessageLog.enqueueMessage(damage + "ダメージくらった");//メッセージログ
 
-                status.setInvicible(true);//無敵時間ON
+                    status.setInvicible(true);//無敵時間ON
 
+                }
             }
+            else GameManager.instance.MessageLog.enqueueMessage("ダメージをくらわなかった！");
+
+
+
         }
 
     }
@@ -168,6 +188,19 @@ public abstract class PlayerController : Character
 
     }
     // </PlayerMotion>
+
+    private void recovery()
+    {
+        if(isRecover && !(status.getHP()==status.getMaxHP()))//
+        {
+            isRecover = false;
+            status.addHP((int)(status.getMaxHP() / 3));//回復
+
+            //回復時、最大HPを越したら
+            if (status.getHP() > status.getMaxHP())
+                status.setHP(status.getMaxHP());
+        }
+    }
 
    protected override void Start()
     {
@@ -191,12 +224,12 @@ public abstract class PlayerController : Character
 
             StartCoroutine(Condition());
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {
                 Jump();
             }
 
-            if (Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2"))
             {
                 attack();
 
@@ -215,9 +248,11 @@ public abstract class PlayerController : Character
         
         if(status.getHP()<=0 && !status.isDeath())   death();
 
+        if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick button 1")) recovery(); //回復
+
         if(Input.GetKeyDown(KeyCode.I))
         {
-            OnDamage(100);
+            OnDamage(20);
         }
 
 

@@ -236,6 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba9c43b0bbbcf44ca0ae1b41f4ed645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ground: {fileID: 0}
+  jumpPower: 0
 --- !u!61 &2648003381596048853
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -631,7 +633,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!1 &4048829302505282138
 GameObject:
   m_ObjectHideFlags: 0

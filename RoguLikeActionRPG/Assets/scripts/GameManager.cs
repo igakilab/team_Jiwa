@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     PlayerController player;//プレイヤースクリプト
 
+    Toggle RecoverToggle;
+
     [SerializeField]GameObject GameOverObject;
 
     public messageLogController MessageLog;
@@ -63,6 +65,8 @@ public class GameManager : MonoBehaviour
 
         ScoreText.text = score.ToString();
 
+        RecoverToggle.isOn = player.getRecover();
+
         
     }
 
@@ -81,6 +85,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        setGame(false);//ゲームの終了
         GameOverObject.GetComponent<Text>().text = "Game Over";
         GameOverObject.SetActive(true);//GameOverの表示
            
@@ -88,10 +93,29 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return)) SceneManager.LoadScene("Title");
     }
 
+    private void GameClear()
+    {
+        setGame(false);//ゲームを終了させる
+
+        GameOverObject.GetComponent<Text>().text = "Game Clear";
+        GameOverObject.SetActive(true);//GameOverの表示
+
+        if (!showRanking)
+        {
+            naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score, stage);
+            showRanking = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return)) SceneManager.LoadScene("Title");
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerObject = GameObject.FindGameObjectWithTag("Player"); //プレイヤーオブジェクトを探す
+
+        RecoverToggle = GameObject.Find("UI/recover").GetComponent<Toggle>();
 
         PlayerHPVar = GameObject.Find("UI/PlayerHP/HPvar").GetComponent<Slider>();
         PlayerHPText = GameObject.Find("UI/PlayerHP/HPText").GetComponent<Text>();
@@ -113,20 +137,9 @@ public class GameManager : MonoBehaviour
     {
         UICtrl();
 
-        if (timer.isTimeZero() || Input.GetKeyDown(KeyCode.O))
+        if (timer.isTimeZero())
         {
-            setGame(false);//ゲームを終了させる
-
-            GameOverObject.GetComponent<Text>().text = "Game Clear";
-            GameOverObject.SetActive(true);//GameOverの表示
-
-            if (!showRanking)
-            {
-                naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score, stage);
-                showRanking = true;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Return)) SceneManager.LoadScene("Title");
+            GameClear();
 
         }
 

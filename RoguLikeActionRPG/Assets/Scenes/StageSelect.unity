@@ -477,6 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FirstSelectButton: {fileID: 388324709}
   btn: {fileID: 0}
+  InstructText: {fileID: 1594854121}
 --- !u!4 &164427186
 Transform:
   m_ObjectHideFlags: 0

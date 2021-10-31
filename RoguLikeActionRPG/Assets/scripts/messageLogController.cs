@@ -29,11 +29,6 @@ public class messageLogController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            times++;
-            enqueueMessage("A pushed" + times +" times");
-        }
         if (islogUpdated)
         {
             updateLogMessage();

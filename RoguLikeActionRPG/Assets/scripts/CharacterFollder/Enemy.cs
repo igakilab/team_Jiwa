@@ -22,38 +22,40 @@ public class Enemy : Character
 
     GameObject monsteObject;
 
-    private bool moveEnebled;//“®‚¯‚é‚©
-    private bool isAttack;//UŒ‚‚Å‚«‚é‚©
-    private bool isOnce = false;
+    protected bool moveEnebled;//“®‚¯‚é‚©
+    protected bool isAttack;//UŒ‚‚Å‚«‚é‚©
+    protected bool isOnce = false;
 
-    private bool attackDelay;//UŒ‚—\”õ“®ì’†‚©
+    protected bool attackDelay;//UŒ‚—\”õ“®ì’†‚©
 
-    /*
+    //“G‚ÌUŒ‚À•W‚ğw’è
+    protected Vector3 EnemyAttackPosition_Right=new Vector3(1,0,0);
+    protected Vector3 EnemyAttackPosition_Left = new Vector3(-1, 0, 0);
+
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(checkAttack.position, attackRadius); 
     }
-     */
+
 
 
     //UŒ‚—\”õ“®ì‚É“ü‚é
-    private IEnumerator Attack()
+    protected virtual IEnumerator Attack()
     {
 
         if (!isOnce)
         {
             attackDelay = true;
-            Debug.Log("UŒ‚—\”õ“®ì‚É“ü‚è‚Ü‚·");
             isOnce = true;
             yield return new WaitForSeconds(CO.ATTACK_DELAY_TIME);//—\”õ“®ì‚Ì•b”
-            Debug.Log("UŒ‚!!");
 
             anim.SetBool("attack", true);
             attackCollisionDetection();//UŒ‚
             attackDelay = false;
             spRen.color = new Color(1f, 1f, 1f, 1f);//“_–Å‚ğ‚Æ‚ß‚é
-            yield return new WaitForSeconds(0.5f);//UŒ‚Œã‚Ìd’¼
+            yield return new WaitForSeconds(0.5f);//UŒã‚Ìd’¼
             
             isOnce = false;
             moveEnebled = true;//“®‚¯‚é‚æ‚¤‚É‚·‚é
@@ -66,7 +68,7 @@ public class Enemy : Character
     {
 
         Collider2D hitPlayer = Physics2D.OverlapCircle(checkAttack.position, attackRadius, LayerMask.GetMask("Player"));//UŒ‚“–‚½‚è”»’è“à‚Ì“GƒIƒuƒWƒFƒNƒg‚ğ“üè
-        if(hitPlayer!=null)
+        if (hitPlayer != null)
         {
             int addDamage; //“G‚É—^‚¦‚éUŒ‚—Í ¦ÀÛ‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é”’l‚Í“G‚Ì–hŒä—Í‚Ì·•ª
             addDamage = (int)Mathf.Ceil(status.getAtk() * Random.Range(0.8f, 1.2f));
@@ -85,17 +87,17 @@ public class Enemy : Character
 
     }
 
-    private void changeAngle(string angle)
+    protected virtual void changeAngle(string angle)
     {
         if (angle == "left")
         {
             spRen.flipX = true;
-            checkAttack.transform.localPosition = new Vector3(-1, 0, 0);//UŒ‚‚Ì“–‚½‚è”»’è‚ğ‰E‘¤‚É
+            checkAttack.transform.localPosition = EnemyAttackPosition_Left;//UŒ‚‚Ì“–‚½‚è”»’è‚ğ‰E‘¤‚É
         }
         else if (angle == "right")
         {
             spRen.flipX = false; //Œü‚«
-            checkAttack.transform.localPosition = new Vector3(1, 0, 0);//UŒ‚‚Ì“–‚½‚è”»’è‚ğ¶‘¤‚É
+            checkAttack.transform.localPosition = EnemyAttackPosition_Right;//UŒ‚‚Ì“–‚½‚è”»’è‚ğ¶‘¤‚É
         }
 
     }
@@ -140,13 +142,18 @@ public class Enemy : Character
     protected override void death()
     {
         status.setHP(0);
+        PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         //ƒAƒjƒ[ƒVƒ‡ƒ“A‹““®;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().status.addExp(enemyStatusData.getExp());//ƒEƒH[ƒŠƒA[‚Ì‚İŒoŒ±’l‚ğ—^‚¦‚é;
+        player.status.addExp(enemyStatusData.getExp());
         GameManager.instance.addKillEnemy();
         GameManager.instance.score += enemyStatusData.getPoint();
         //log
         GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getName() + "‚ğ“|‚µ‚½I");
         GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getExp() + "‚ÌŒoŒ±’l‚ğ“üè‚µ‚½!");
+
+        if (Random.Range(1, 51) == 1)// 2%‚ÌŠm—¦‚Å‰ñ•œ‚ğ—‚Æ‚·
+            player.setRecover(true);//ƒvƒŒƒCƒ„[‚Ì‰ñ•œ‚ğ‹–‰Â‚·‚é
+            
 
         Destroy(this.gameObject);
     }
@@ -162,6 +169,8 @@ public class Enemy : Character
 
         spRen = monsteObject.GetComponent<SpriteRenderer>();
         anim = monsteObject.GetComponent<Animator>();
+
+        attackRadius = checkAttack.gameObject.GetComponent<CircleCollider2D>().radius;
 
         status = new EnemyStatus(enemyStatusData);
 
