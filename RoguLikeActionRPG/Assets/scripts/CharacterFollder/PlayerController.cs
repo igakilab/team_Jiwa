@@ -98,7 +98,7 @@ public abstract class PlayerController : Character
             changeAngle("right");
 
             //ダッシュ
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey("joystick button 8"))
             {
                 anim.SetBool("dash", true);
                 xSpeed = speed * 1.2f;
@@ -117,7 +117,7 @@ public abstract class PlayerController : Character
             changeAngle("left");
 
             //ダッシュ
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey("joystick button 8"))
             {
                 anim.SetBool("dash", true);
                 xSpeed = -speed * 1.2f;
@@ -224,12 +224,12 @@ public abstract class PlayerController : Character
 
             StartCoroutine(Condition());
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {
                 Jump();
             }
 
-            if (Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.V) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 2"))
             {
                 attack();
 
@@ -248,7 +248,7 @@ public abstract class PlayerController : Character
         
         if(status.getHP()<=0 && !status.isDeath())   death();
 
-        if (Input.GetKeyDown(KeyCode.B)) recovery(); //回復
+        if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick button 1")) recovery(); //回復
 
         if(Input.GetKeyDown(KeyCode.I))
         {

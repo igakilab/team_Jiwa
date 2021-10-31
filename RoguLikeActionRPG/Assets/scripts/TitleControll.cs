@@ -47,7 +47,13 @@ public class TitleControll : MonoBehaviour
         textAlphaUpdate();
         imagesChange();
 
-        if(Input.GetKeyDown(KeyCode.V) && !isAlreadyPushedVKey)
+        //コントローラーの接続状況によってテキスト変更
+        if (Contoroller.isConectedContoroller)
+            txt.text = "- Press A key -";
+        else
+            txt.text = "- Press V key -";
+
+        if ((Input.GetKeyDown(KeyCode.V)||Input.GetKeyDown("joystick button 0"))&& !isAlreadyPushedVKey)
         {
             isAlreadyPushedVKey = true;
             Debug.Log("pushed");
