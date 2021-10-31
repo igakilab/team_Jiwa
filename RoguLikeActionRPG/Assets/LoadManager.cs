@@ -37,6 +37,8 @@ public class LoadManager : MonoBehaviour
         //ƒQ[ƒW‚ª‚½‚Ü‚Á‚½‚ç
         if(load.value>=1)
         {
+            GameObject TitleBGM = GameObject.FindGameObjectWithTag("sound");
+            Destroy(TitleBGM);
             SceneManager.LoadScene("stage" + stageSelector.stage);
         }
     }

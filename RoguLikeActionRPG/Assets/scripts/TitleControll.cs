@@ -57,6 +57,7 @@ public class TitleControll : MonoBehaviour
         {
             isAlreadyPushedVKey = true;
             Debug.Log("pushed");
+            SoundManager.PlaySelectSound();
             SceneManager.LoadScene("StageSelect");
         }
         

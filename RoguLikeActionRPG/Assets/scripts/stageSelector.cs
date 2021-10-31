@@ -29,6 +29,7 @@ public class stageSelector : MonoBehaviour
     {
         Debug.Log("go to stage " + number + "!");
         stage = number;
+        SoundManager.PlaySelectSound();
         SceneManager.LoadScene("load");
         
     }

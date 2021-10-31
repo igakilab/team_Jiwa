@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Const;
 
 //キャラクターの動きについてのスクリプト
@@ -8,9 +9,18 @@ public abstract class PlayerController : Character
 {
 
     // <コンポーネント>
-    
-    
+    protected AudioSource audioSource;
+
     //</コンポーネント>
+
+    //sound
+    public AudioClip healSound;
+    public AudioClip damageSound;
+    public AudioClip attackSound;
+    public AudioClip missAttackSound;
+    public AudioClip levelUpSound;
+
+    private GameObject levelUpText;
 
     //プレイヤー情報
     public PlayerStatusData playerStatusData; //初期ステータス
@@ -21,7 +31,7 @@ public abstract class PlayerController : Character
     //実装に必要な変数
     bool isOnce = false;//コルーチンを一度のみ呼び出す変数
 
-    public bool isRecover;//回復できるかどうか
+    [System.NonSerialized]public bool isRecover;//回復できるかどうか
 
     //向きの変更
     private void changeAngle(string angle)
@@ -158,6 +168,7 @@ public abstract class PlayerController : Character
     {
         if(isControll())
         {
+            
             //ダメージ計算
             int damage;//実際に与えるダメージ
             damage = enemyAtk - this.status.getDef(); //ダメージ=敵の攻撃力-自身の防御力
@@ -170,6 +181,7 @@ public abstract class PlayerController : Character
                 {
                     status.setHP(status.getHP() - damage);
                     GameManager.instance.MessageLog.enqueueMessage(damage + "ダメージくらった");//メッセージログ
+                    audioSource.PlayOneShot(damageSound);
 
                     status.setInvicible(true);//無敵時間ON
 
@@ -194,6 +206,7 @@ public abstract class PlayerController : Character
         if(isRecover && !(status.getHP()==status.getMaxHP()))//
         {
             isRecover = false;
+            audioSource.PlayOneShot(healSound);
             status.addHP((int)(status.getMaxHP() / 3));//回復
 
             //回復時、最大HPを越したら
@@ -208,6 +221,7 @@ public abstract class PlayerController : Character
         //コンポーネント
         anim = GetComponent<Animator>();
         spRen = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         init();//初期化
 
         status = new PlayerStatus(playerStatusData);
@@ -239,6 +253,7 @@ public abstract class PlayerController : Character
 
             if (status.getExp()>=status.getNeedExp())
             {
+                audioSource.PlayOneShot(levelUpSound);
                 status.levelup();
                 
             }
