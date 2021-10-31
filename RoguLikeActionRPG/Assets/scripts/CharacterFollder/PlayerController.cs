@@ -21,6 +21,8 @@ public abstract class PlayerController : Character
     //実装に必要な変数
     bool isOnce = false;//コルーチンを一度のみ呼び出す変数
 
+    public bool isRecover;//回復できるかどうか
+
     //向きの変更
     private void changeAngle(string angle)
     {
@@ -43,6 +45,16 @@ public abstract class PlayerController : Character
     {
         if (!status.isDeath() && GameManager.instance.isGame()) return true;
         return false;
+    }
+
+    public bool getRecover()
+    {
+        return isRecover;
+    }
+
+    public void setRecover(bool tf)
+    {
+        this.isRecover = tf;
     }
 
     private IEnumerator Condition()
@@ -69,6 +81,7 @@ public abstract class PlayerController : Character
     private void init()
     {
         angle = Vector2.right;//スタート時点のプレイヤーの向き
+        isRecover = true;//回復ON
     }
 
     // <PlayerMotion>
@@ -178,7 +191,15 @@ public abstract class PlayerController : Character
 
     private void recovery()
     {
+        if(isRecover && !(status.getHP()==status.getMaxHP()))//
+        {
+            isRecover = false;
+            status.addHP((int)(status.getMaxHP() / 3));//回復
 
+            //回復時、最大HPを越したら
+            if (status.getHP() > status.getMaxHP())
+                status.setHP(status.getMaxHP());
+        }
     }
 
    protected override void Start()
@@ -227,9 +248,11 @@ public abstract class PlayerController : Character
         
         if(status.getHP()<=0 && !status.isDeath())   death();
 
+        if (Input.GetKeyDown(KeyCode.B)) recovery(); //回復
+
         if(Input.GetKeyDown(KeyCode.I))
         {
-            OnDamage(0);
+            OnDamage(20);
         }
 
 

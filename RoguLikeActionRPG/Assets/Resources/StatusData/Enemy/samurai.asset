@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe784dd2daa8d34cb067ed379312797, type: 3}
   m_Name: samurai
   m_EditorClassIdentifier: 
-  initMaxHP: 0
-  initAtk: 0
+  initMaxHP: 28
+  initAtk: 10
   initDef: 0
   EnemyID: 
-  Name: 
-  speed: 0
-  exp: 0
-  point: 0
+  Name: "\u4F8D"
+  speed: 5
+  exp: 15
+  point: 13

@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     PlayerController player;//プレイヤースクリプト
 
+    Toggle RecoverToggle;
+
     [SerializeField]GameObject GameOverObject;
 
     public messageLogController MessageLog;
@@ -62,6 +64,8 @@ public class GameManager : MonoBehaviour
         ExpBar.value = (float)player.status.getExp() / (float)player.status.getNeedExp();
 
         ScoreText.text = score.ToString();
+
+        RecoverToggle.isOn = player.getRecover();
 
         
     }
@@ -110,6 +114,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         PlayerObject = GameObject.FindGameObjectWithTag("Player"); //プレイヤーオブジェクトを探す
+
+        RecoverToggle = GameObject.Find("UI/recover").GetComponent<Toggle>();
 
         PlayerHPVar = GameObject.Find("UI/PlayerHP/HPvar").GetComponent<Slider>();
         PlayerHPText = GameObject.Find("UI/PlayerHP/HPText").GetComponent<Text>();

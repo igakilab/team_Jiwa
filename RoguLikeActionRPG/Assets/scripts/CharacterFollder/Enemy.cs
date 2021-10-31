@@ -142,13 +142,18 @@ public class Enemy : Character
     protected override void death()
     {
         status.setHP(0);
+        PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         //アニメーション、挙動;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().status.addExp(enemyStatusData.getExp());//ウォーリアーのみ経験値を与える;
+        player.status.addExp(enemyStatusData.getExp());
         GameManager.instance.addKillEnemy();
         GameManager.instance.score += enemyStatusData.getPoint();
         //log
         GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getName() + "を倒した！");
         GameManager.instance.MessageLog.enqueueMessage(enemyStatusData.getExp() + "の経験値を入手した!");
+
+        if (Random.Range(1, 51) == 1)// 2%の確率で回復を落とす
+            player.setRecover(true);//プレイヤーの回復を許可する
+            
 
         Destroy(this.gameObject);
     }
