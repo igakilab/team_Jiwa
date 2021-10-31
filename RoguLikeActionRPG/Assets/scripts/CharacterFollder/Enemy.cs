@@ -32,12 +32,15 @@ public class Enemy : Character
     protected Vector3 EnemyAttackPosition_Right=new Vector3(1,0,0);
     protected Vector3 EnemyAttackPosition_Left = new Vector3(-1, 0, 0);
 
+
     
-    private void OnDrawGizmos()
+         private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(checkAttack.position, attackRadius); 
     }
+     
+
 
 
 
@@ -52,7 +55,7 @@ public class Enemy : Character
             yield return new WaitForSeconds(CO.ATTACK_DELAY_TIME);//—\”õ“®ì‚Ì•b”
 
             anim.SetBool("attack", true);
-            attackCollisionDetection();//UŒ‚
+            //attackCollisionDetection();//UŒ‚
             attackDelay = false;
             spRen.color = new Color(1f, 1f, 1f, 1f);//“_–Å‚ğ‚Æ‚ß‚é
             yield return new WaitForSeconds(0.5f);//UŒã‚Ìd’¼
@@ -66,6 +69,8 @@ public class Enemy : Character
     //UŒ‚‚Ì”»’è
     public void attackCollisionDetection()
     {
+
+        
 
         Collider2D hitPlayer = Physics2D.OverlapCircle(checkAttack.position, attackRadius, LayerMask.GetMask("Player"));//UŒ‚“–‚½‚è”»’è“à‚Ì“GƒIƒuƒWƒFƒNƒg‚ğ“üè
         if (hitPlayer != null)

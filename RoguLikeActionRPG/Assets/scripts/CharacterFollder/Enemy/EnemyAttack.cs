@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private Enemy enemy;
+    private Enemy enemy; //エネミースクリプト
     private float attackRadius;
     private Transform checkAttack;
     private EnemyStatus status;
     public void attackCollisionDetection()
     {
+        attackRadius = enemy.getAttackRadius();
 
         Collider2D hitPlayer = Physics2D.OverlapCircle(checkAttack.position, attackRadius, LayerMask.GetMask("Player"));//攻撃当たり判定内の敵オブジェクトを入手
         if (hitPlayer != null)
@@ -25,8 +26,14 @@ public class EnemyAttack : MonoBehaviour
     public void Start()
     {
         enemy = transform.parent.gameObject.GetComponent<Enemy>();
-        attackRadius = enemy.getAttackRadius();
+        
+        
+    }
+
+    public void Update()
+    {
         checkAttack = enemy.getCheckAttack();
         status = enemy.status;
+
     }
 }

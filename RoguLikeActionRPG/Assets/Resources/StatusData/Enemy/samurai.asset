@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: samurai
   m_EditorClassIdentifier: 
   initMaxHP: 28
-  initAtk: 10
+  initAtk: 12
   initDef: 0
   EnemyID: 
   Name: "\u4F8D"

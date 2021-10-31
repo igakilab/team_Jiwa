@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Bandit
   m_EditorClassIdentifier: 
   initMaxHP: 25
-  initAtk: 10
-  initDef: 1
+  initAtk: 11
+  initDef: 3
   EnemyID: 
   Name: "\u76D7\u8CCA"
-  speed: 0
+  speed: 3
   exp: 13
-  point: 10
+  point: 13

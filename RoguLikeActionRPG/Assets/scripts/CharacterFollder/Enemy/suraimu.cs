@@ -7,6 +7,8 @@ public class suraimu : Enemy
     // Start is called before the first frame update
     protected override void Start()
     {
+        EnemyAttackPosition_Right = new Vector3(0, 0, 0);
+        EnemyAttackPosition_Left = new Vector3(0, 0, 0);
         enemyStatusData = Resources.Load<EnemyStatusData>(CO.ENEMY_STATUS_PATH + "suraimu");
         base.Start();
     }
