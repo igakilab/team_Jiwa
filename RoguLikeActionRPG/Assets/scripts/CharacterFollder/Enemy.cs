@@ -32,12 +32,12 @@ public class Enemy : Character
     protected Vector3 EnemyAttackPosition_Right=new Vector3(1,0,0);
     protected Vector3 EnemyAttackPosition_Left = new Vector3(-1, 0, 0);
 
-    /*    
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(checkAttack.position, attackRadius); 
-    }*/
+    }
 
 
 

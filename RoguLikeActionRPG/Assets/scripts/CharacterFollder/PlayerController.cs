@@ -176,6 +176,11 @@ public abstract class PlayerController : Character
     }
     // </PlayerMotion>
 
+    private void recovery()
+    {
+
+    }
+
    protected override void Start()
     {
         base.Start();

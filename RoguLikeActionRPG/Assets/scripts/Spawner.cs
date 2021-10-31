@@ -35,21 +35,16 @@ public class Spawner : MonoBehaviour
         num = Random.Range(1, 100);
 
         if (num <= 30)
-        {
             Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH+"suraimu");//スポーン対象のプレハブを読み込む
-        }
+  
         else if (num <= 60)
-        {
             Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH + "goburin");//スポーン対象のプレハブを読み込む
-        }
-        else if(num<=90)
-        {
+        else if(num<=85)
             Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH + "Mushroom");//スポーン対象のプレハブを読み込む
-        }
+        else if(num<=90)
+            Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH + "samurai");//スポーン対象のプレハブを読み込む
         else
-        {
             Enemy = (GameObject)Resources.Load(CO.ENEMY_PREFAB_PATH + "gaikotu");//スポーン対象のプレハブを読み込む
-        }
 
         Instantiate(Enemy, new Vector3(SpawnX, 0f, 0f), Quaternion.identity).transform.parent = Enemys.transform;//Enemysの子オブジェクトにプレハブを生成
     }

@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        setGame(false);//ƒQ[ƒ€‚ÌI—¹
         GameOverObject.GetComponent<Text>().text = "Game Over";
         GameOverObject.SetActive(true);//GameOver‚Ì•\¦
            
