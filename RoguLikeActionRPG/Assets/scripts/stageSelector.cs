@@ -36,7 +36,9 @@ public class stageSelector : MonoBehaviour
 
     public void Update()
     {
-        if(Contoroller.isConectedContoroller)
+        InstructText.text = Contoroller.ButtonText("セレクト")+"：ステージ変更\n"+Contoroller.ButtonText("決定")+"：ステージ決定";
+        /*
+        if (Contoroller.isConectedContoroller)
         {
             InstructText.text = "Lスティック：ステージ変更\nAボタン：ステージ決定";
         }
@@ -44,6 +46,8 @@ public class stageSelector : MonoBehaviour
         {
             InstructText.text = "WASDもしくは↑↓→←キー：ステージ変更\nEnterキーもしくはSpaceキー：ステージ決定";
         }
+         */
+
 
 
         btn = EventSystem.current.currentSelectedGameObject;

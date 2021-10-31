@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     Text ScoreText;
     Slider ExpBar;
     Text ExpText;
+    Text finishText;
+    Text healKeyText;
 
     bool showRanking = false;
 
@@ -67,6 +69,8 @@ public class GameManager : MonoBehaviour
 
         RecoverToggle.isOn = player.getRecover();
 
+        healKeyText.text = Contoroller.ButtonText("回復");
+
         
     }
 
@@ -88,9 +92,21 @@ public class GameManager : MonoBehaviour
         setGame(false);//ゲームの終了
         GameOverObject.GetComponent<Text>().text = "Game Over";
         GameOverObject.SetActive(true);//GameOverの表示
-           
+        finishText.gameObject.SetActive(true);
 
-        if (Input.GetKeyDown(KeyCode.Return)) SceneManager.LoadScene("Title");
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0")) SceneManager.LoadScene("Title");
+    }
+
+    private IEnumerator PrintRanking()
+    {
+        showRanking = true;
+        yield return new WaitForSeconds(3f);
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score, stage);
+
+        finishText.text = "-- Press " + Contoroller.ButtonText("決定") + "  to Title --";
+        finishText.gameObject.SetActive(true);
+
+
     }
 
     private void GameClear()
@@ -98,15 +114,15 @@ public class GameManager : MonoBehaviour
         setGame(false);//ゲームを終了させる
 
         GameOverObject.GetComponent<Text>().text = "Game Clear";
-        GameOverObject.SetActive(true);//GameOverの表示
+        finishText.text = "-- Press " + Contoroller.ButtonText("決定") + "  to Title --";
+        GameOverObject.SetActive(true);
 
         if (!showRanking)
         {
-            naichilab.RankingLoader.Instance.SendScoreAndShowRanking(score, stage);
-            showRanking = true;
+            StartCoroutine(PrintRanking());
+            
         }
-
-        if (Input.GetKeyDown(KeyCode.Return)) SceneManager.LoadScene("Title");
+        if (Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown("joystick button 0")) SceneManager.LoadScene("Title");
     }
 
 
@@ -117,11 +133,15 @@ public class GameManager : MonoBehaviour
 
         RecoverToggle = GameObject.Find("UI/recover").GetComponent<Toggle>();
 
+        GameObject UI = GameObject.Find("UI");
+
         PlayerHPVar = GameObject.Find("UI/PlayerHP/HPvar").GetComponent<Slider>();
         PlayerHPText = GameObject.Find("UI/PlayerHP/HPText").GetComponent<Text>();
         ExpBar = GameObject.Find("UI/Exp/ExpBar").GetComponent<Slider>();
         ExpText = GameObject.Find("UI/Exp/ExpText").GetComponent<Text>();
         ScoreText = GameObject.Find("UI/ScoreText").GetComponent<Text>();
+        finishText = UI.transform.Find("FinishText").GetComponent<Text>();
+        healKeyText = GameObject.Find("UI/HealText").GetComponent<Text>();
 
         player = PlayerObject.GetComponent<PlayerController>();
 
@@ -130,6 +150,8 @@ public class GameManager : MonoBehaviour
         killEnemyNum = 0;
         score = 0;
         stage = stageSelector.stage;//選択したステージの所得
+        GameOverObject.SetActive(false);
+        finishText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

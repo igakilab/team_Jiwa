@@ -33,13 +33,17 @@ public class Enemy : Character
     protected Vector3 EnemyAttackPosition_Left = new Vector3(-1, 0, 0);
 
 
-    
-         private void OnDrawGizmos()
+
+    /*
+              private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(checkAttack.position, attackRadius); 
-    }
-     
+    } 
+     */
+
+
+
 
 
 
@@ -158,7 +162,6 @@ public class Enemy : Character
 
         if (Random.Range(1, 51) == 1)// 2%の確率で回復を落とす
             player.setRecover(true);//プレイヤーの回復を許可する
-            
 
         Destroy(this.gameObject);
     }

@@ -259,6 +259,10 @@ public abstract class PlayerController : Character
             }
 
         }
+        else
+        {
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+        }
 
         
         if(status.getHP()<=0 && !status.isDeath())   death();
