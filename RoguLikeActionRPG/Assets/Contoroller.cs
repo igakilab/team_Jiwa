@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class Contoroller : MonoBehaviour
 {
-    public static bool isConectedContoroller;
+    public static bool isConectedContoroller=false;
+
+    string[] ControllerNames=new string[10];
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        var controllerNames = Input.GetJoystickNames();//接続されているコントローラの名前を調べる
+        
+        
+       ControllerNames = Input.GetJoystickNames();//接続されているコントローラの名前を調べる
 
-        if(controllerNames[0]=="")
+
+
+        if (ControllerNames.Length==0)
         {
             isConectedContoroller = false;
         }
         else
         {
-            isConectedContoroller = true;
+            if(ControllerNames[0]=="")
+            {
+                isConectedContoroller = false;
+            }
+            else
+            {
+                isConectedContoroller = true;
+            }
         }
     }
 }
