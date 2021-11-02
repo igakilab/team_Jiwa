@@ -32,6 +32,9 @@ public class Enemy : Character
     protected Vector3 EnemyAttackPosition_Right=new Vector3(1,0,0);
     protected Vector3 EnemyAttackPosition_Left = new Vector3(-1, 0, 0);
 
+    public AudioClip missAttackSound;
+    [System.NonSerialized] public AudioSource audioSource;
+
 
 
     /*
@@ -181,6 +184,8 @@ public class Enemy : Character
         attackRadius = checkAttack.gameObject.GetComponent<CircleCollider2D>().radius;
 
         status = new EnemyStatus(enemyStatusData);
+
+        audioSource = GetComponent<AudioSource>();
 
         moveEnebled = true;
         attackDelay = false;

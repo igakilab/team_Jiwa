@@ -483,6 +483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ground: {fileID: 0}
   jumpPower: 0
+  missAttackSound: {fileID: 8300000, guid: 6ef0ccc6d20d10b4fb0d062a6748efbc, type: 3}
 --- !u!61 &5825094826256973312
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -518,7 +519,7 @@ AudioSource:
   m_GameObject: {fileID: 5825094826256973316}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5606996501159899273, guid: 8747f2dac8e0ae44eb4b2c81451ca7be, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

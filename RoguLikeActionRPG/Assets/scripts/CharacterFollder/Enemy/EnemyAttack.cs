@@ -19,6 +19,8 @@ public class EnemyAttack : MonoBehaviour
             addDamage = (int)Mathf.Ceil(status.getAtk() * Random.Range(0.8f, 1.2f));
             hitPlayer.gameObject.GetComponent<PlayerController>().OnDamage(addDamage); //ƒ_ƒ[ƒW‚ğ—^‚¦‚é
         }
+        else
+            enemy.audioSource.PlayOneShot(enemy.missAttackSound);
 
 
     }

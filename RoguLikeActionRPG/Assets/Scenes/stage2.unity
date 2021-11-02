@@ -1355,7 +1355,7 @@ MonoBehaviour:
   score: 0
   stage: 0
   timer: {fileID: 583580615}
-  GameOverObject: {fileID: 583580617}
+  CenterTextObject: {fileID: 583580617}
   MessageLog: {fileID: 583580616}
 --- !u!4 &1157621465
 Transform:
@@ -1380,7 +1380,7 @@ AudioSource:
   m_GameObject: {fileID: 1157621463}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5326969730838827150, guid: 8747f2dac8e0ae44eb4b2c81451ca7be, type: 2}
   m_audioClip: {fileID: 8300000, guid: e62ce3df3f1a221439426ef0068a6414, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

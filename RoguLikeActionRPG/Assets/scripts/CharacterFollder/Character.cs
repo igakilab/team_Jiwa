@@ -8,8 +8,9 @@ public abstract class Character : MonoBehaviour
     protected Animator anim = null;
     protected SpriteRenderer spRen;
 
-    [SerializeField]private groundCheck ground;//接地確認クラス
-    [SerializeField]private float jumpPower; //ジャンプ力
+    [SerializeField]protected groundCheck ground;//接地確認クラス
+    [SerializeField]protected float jumpPower; //ジャンプ力
+    [SerializeField]protected AudioClip jumpSound;
 
     //攻撃当たり判定
     protected Transform checkAttack;//攻撃判定オブジェクトのトランスフォーム
@@ -25,7 +26,7 @@ public abstract class Character : MonoBehaviour
         return attackRadius;
     }
 
-    protected void Jump()
+    protected virtual void Jump()
     {
         if (ground.getIsGround())
         {

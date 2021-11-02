@@ -51,6 +51,16 @@ public abstract class PlayerController : Character
 
     }
 
+    protected override void Jump()
+    {
+        if (ground.getIsGround())
+        {
+            rb2d.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
+            anim.SetBool("jump", true);
+            audioSource.PlayOneShot(jumpSound);
+        }
+    }
+
     protected bool isControll()
     {
         if (!status.isDeath() && GameManager.instance.isGame()) return true;

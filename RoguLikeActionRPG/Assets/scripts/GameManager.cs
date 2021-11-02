@@ -30,11 +30,14 @@ public class GameManager : MonoBehaviour
 
     Toggle RecoverToggle;
 
-    [SerializeField]GameObject GameOverObject;
+    [SerializeField]GameObject CenterTextObject;
 
     public messageLogController MessageLog;
 
     private bool game=false; //ゲームの有効無効
+
+    private float startTime=3;
+    private bool isTimeZero = false;
 
     public void addKillEnemy()
     {
@@ -56,7 +59,24 @@ public class GameManager : MonoBehaviour
         return this.game;
     }
     
-
+    private bool StartTimer()
+    {
+        int seconds;
+        if (startTime > 0)
+        {
+            startTime -= Time.deltaTime;
+            seconds = (int)startTime;
+            CenterTextObject.GetComponent<Text>().text = seconds.ToString();
+            if (startTime < 0)
+            {
+                startTime = 0;
+                return true;
+            }
+            return false;
+            
+        }
+        return true;
+    }
     private void UICtrl()
     {
         PlayerHPText.text = player.status.getHP().ToString(); //プレイヤーの体力を随時更新
@@ -90,8 +110,8 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         setGame(false);//ゲームの終了
-        GameOverObject.GetComponent<Text>().text = "Game Over";
-        GameOverObject.SetActive(true);//GameOverの表示
+        CenterTextObject.GetComponent<Text>().text = "Game Over";
+        CenterTextObject.SetActive(true);//GameOverの表示
         finishText.gameObject.SetActive(true);
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0")) SceneManager.LoadScene("Title");
@@ -113,9 +133,9 @@ public class GameManager : MonoBehaviour
     {
         setGame(false);//ゲームを終了させる
 
-        GameOverObject.GetComponent<Text>().text = "Game Clear";
+        CenterTextObject.GetComponent<Text>().text = "Game Clear";
         finishText.text = "-- Press " + Contoroller.ButtonText("決定") + "  to Title --";
-        GameOverObject.SetActive(true);
+        CenterTextObject.SetActive(true);
 
         if (!showRanking)
         {
@@ -150,7 +170,7 @@ public class GameManager : MonoBehaviour
         killEnemyNum = 0;
         score = 0;
         stage = stageSelector.stage;//選択したステージの所得
-        GameOverObject.SetActive(false);
+        CenterTextObject.SetActive(false);
         finishText.gameObject.SetActive(false);
     }
 

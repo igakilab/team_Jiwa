@@ -176,7 +176,6 @@ GameObject:
   - component: {fileID: 2648003381596048842}
   - component: {fileID: 3752913504476928903}
   - component: {fileID: 2648003381596048853}
-  - component: {fileID: 2074696575104064754}
   - component: {fileID: 8471171547881229747}
   m_Layer: 6
   m_Name: gaikotu
@@ -239,6 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ground: {fileID: 0}
   jumpPower: 0
+  missAttackSound: {fileID: 8300000, guid: c3418a859d161dd4dab07305f483786a, type: 3}
 --- !u!61 &2648003381596048853
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -265,25 +265,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3779764, y: 1.8031988}
   m_EdgeRadius: 0
---- !u!95 &2074696575104064754
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2648003381596048849}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &8471171547881229747
 AudioSource:
   m_ObjectHideFlags: 0
@@ -293,7 +274,7 @@ AudioSource:
   m_GameObject: {fileID: 2648003381596048849}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5606996501159899273, guid: 8747f2dac8e0ae44eb4b2c81451ca7be, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

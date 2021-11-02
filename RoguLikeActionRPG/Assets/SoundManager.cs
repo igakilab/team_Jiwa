@@ -6,16 +6,18 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioClip EneterTemp;
     private static AudioClip enterSound;
-    private static AudioSource audiosource;
+    private static AudioSource AudioSourceBGM;
+    private static AudioSource AudioSourceSE;
     // Start is called before the first frame update
 
     public static void PlaySelectSound()
     {
-        audiosource.PlayOneShot(enterSound);
+        AudioSourceSE.PlayOneShot(enterSound);
     }
     void Start()
     {
-        audiosource = GetComponent<AudioSource>();
+        AudioSourceSE = transform.Find("SoundSE").GetComponent<AudioSource>();
+        AudioSourceBGM = transform.Find("SoundBGM").GetComponent<AudioSource>();
         DontDestroyOnLoad(this);
     }
 
