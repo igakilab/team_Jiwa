@@ -1,7 +1,6 @@
 # セットアップ方法
 ## Unityのインストール
-## WebGLへビルド
-## Netlifyへ公開
+## WebGLへビルド,Netlifyへ公開
 
 1. <https://github.com/igakilab/team_Jiwa>にアクセスする。
 2. codeのDownload Zipをクリックして、ダウロードする。
