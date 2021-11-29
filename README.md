@@ -4,7 +4,7 @@
 
 1. <https://github.com/igakilab/team_Jiwa>にアクセスする。
     ![1](https://user-images.githubusercontent.com/89173987/143882988-5f77cfe6-e1e7-47b6-9f5e-97c3a5739f8e.jpg)
-3. codeのDownload Zipをクリックして、ダウロードする。
+2. codeのDownload Zipをクリックして、ダウロードする。
 4. ダウンロードしたzipファイルを解凍する。
 5. unityを開く。
 6. リストに追加で、４で解凍したファイルから、RoguLikeActionRPGを追加する。
