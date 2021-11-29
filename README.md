@@ -3,13 +3,14 @@
 ## WebGLへビルド,Netlifyへ公開
 
 1. <https://github.com/igakilab/team_Jiwa>にアクセスする。
-2. codeのDownload Zipをクリックして、ダウロードする。
-3. ダウンロードしたzipファイルを解凍する。
-4. unityを開く。
-5. リストに追加で、４で解凍したファイルから、RoguLikeActionRPGを追加する。
-6. プロジェクト名にRoguLikeActionRPGが追加されたのを確認して開く。
-7. FileからBuild Settingsを開き、Web GLを選択し、Build And Runをクリックする。
-8. ゲームを置く場所を指定するウィンドウが開くので、なるべくunityとは離れた場所(ディレクトリまたはフォルダ)に指定する。
+    ![1](https://user-images.githubusercontent.com/89173987/143882988-5f77cfe6-e1e7-47b6-9f5e-97c3a5739f8e.jpg)
+3. codeのDownload Zipをクリックして、ダウロードする。
+4. ダウンロードしたzipファイルを解凍する。
+5. unityを開く。
+6. リストに追加で、４で解凍したファイルから、RoguLikeActionRPGを追加する。
+7. プロジェクト名にRoguLikeActionRPGが追加されたのを確認して開く。
+8. FileからBuild Settingsを開き、Web GLを選択し、Build And Runをクリックする。
+9. ゲームを置く場所を指定するウィンドウが開くので、なるべくunityとは離れた場所(ディレクトリまたはフォルダ)に指定する。
     
     ※指定する場所のパスに全角が入ってないものを選ぶ。
 9. Buildしたフォルダ内に3つのファイルが入っていることを確認する。
