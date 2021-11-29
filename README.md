@@ -28,8 +28,8 @@
     (Desktop.data.unitywebはデータ容量が大きくgithubにアップロードできないため、Onedrive上に置く)
 12. githubを閉じる。
 13. ブラウザでNetlifyを開く。
-    ![12](https://user-images.githubusercontent.com/89173987/143883662-54a127a3-7be4-4289-a476-5822a1aed616.jpg)
 14. ログイン画面が出るので、githubアカウントでログインする。
+    ![12](https://user-images.githubusercontent.com/89173987/143883662-54a127a3-7be4-4289-a476-5822a1aed616.jpg)
 15. New site from Gitをクリックし、GitHubを選択する。
     ![13](https://user-images.githubusercontent.com/89173987/143883688-a70301d5-13d8-41ea-8b24-2a6aeed00cd1.jpg)
     ![14](https://user-images.githubusercontent.com/89173987/143883693-967cd8d0-1f8b-4433-801b-fa113489242e.jpg)
