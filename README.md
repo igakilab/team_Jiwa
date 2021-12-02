@@ -14,9 +14,9 @@
 6. プロジェクト名にRoguLikeActionRPGが追加されたのを確認して開く。
     ![5](https://user-images.githubusercontent.com/89173987/144359954-4c09a0cd-d7e8-4099-b2f7-0a4f07c5cfbe.jpg)
 7. FileからBuild Settingsを開き、Web GLを選択し、Build And Runをクリックする。
-    ![6](https://user-images.githubusercontent.com/89173987/144359956-6cea1076-c5d7-4371-b7c5-ad3968ffef31.jpg)
-    ![7](https://user-images.githubusercontent.com/89173987/144359958-9294af9c-8f7e-454d-b344-5310119f5fd4.jpg)
-    ![8](https://user-images.githubusercontent.com/89173987/144359960-236ef76b-701a-4239-a9dc-82380e4962e6.jpg)
+    ![6](https://user-images.githubusercontent.com/89173987/144360641-61015cc2-9bf0-4e4d-bcd9-4dfbf9f9117b.jpg)
+    ![7](https://user-images.githubusercontent.com/89173987/144360646-42c94374-b882-4a23-8fbe-7033ff691a98.jpg)
+    ![8](https://user-images.githubusercontent.com/89173987/144360647-62ce80f5-60df-4f65-a979-404b514960b6.jpg)
     ※unityのバージョンは2020.3.18f1を指定。
 8. ゲームを置く場所を指定するウィンドウが開くので、なるべくunityとは離れた場所(ディレクトリまたはフォルダ)に指定する。
     ※指定する場所のパスに全角が入ってないものを選ぶ。
