@@ -3,42 +3,42 @@
 ## WebGLへビルド,Netlifyへ公開
 
 1. <https://github.com/igakilab/team_Jiwa>にアクセスする。
-    ![1](https://user-images.githubusercontent.com/89173987/143882988-5f77cfe6-e1e7-47b6-9f5e-97c3a5739f8e.jpg)
+    ![1](https://user-images.githubusercontent.com/89173987/144359948-e1fcb97a-e4fd-4e38-a578-78aba5934832.jpg)
 2. codeのDownload Zipをクリックして、ダウンロードする。
-    ![2](https://user-images.githubusercontent.com/89173987/143883411-5340cf86-c192-43d0-8833-d3152f409ac3.jpg)
+    ![2](https://user-images.githubusercontent.com/89173987/144359950-f7e4b9dd-083f-4a0e-8369-c844a9e055f1.jpg)
 3. ダウンロードしたzipファイルを解凍する。
 4. unityを開く。
-    ![3](https://user-images.githubusercontent.com/89173987/143883416-797452c3-e598-4131-a9c6-9d5af36e4e45.jpg)
+    ![3](https://user-images.githubusercontent.com/89173987/144359951-792736f4-fdf6-40fa-a351-c95f471f750b.jpg)
 5. リストに追加で、４で解凍したファイルから、RoguLikeActionRPGを追加する。
-    ![4](https://user-images.githubusercontent.com/89173987/143883422-a0f66b2a-9e57-4025-94c0-6204e0e11671.jpg)
+    ![4](https://user-images.githubusercontent.com/89173987/144359953-5ba05862-2fea-4671-9b7e-7acca425d065.jpg)
 6. プロジェクト名にRoguLikeActionRPGが追加されたのを確認して開く。
-    ![5](https://user-images.githubusercontent.com/89173987/143883424-385b7fd5-5700-4066-b688-cdaffb3ab0b1.jpg)
+    ![5](https://user-images.githubusercontent.com/89173987/144359954-4c09a0cd-d7e8-4099-b2f7-0a4f07c5cfbe.jpg)
 7. FileからBuild Settingsを開き、Web GLを選択し、Build And Runをクリックする。
-    ![6](https://user-images.githubusercontent.com/89173987/143883425-b7b0e493-9bcd-456f-ba2d-4044182f120f.jpg)
-    ![7](https://user-images.githubusercontent.com/89173987/143883427-dc29ce1b-f9b4-44a9-80e0-385c21728727.jpg)
-    ![8](https://user-images.githubusercontent.com/89173987/143883431-dea2ea43-5e65-4421-ac2e-faffac6d2949.jpg)
+    ![6](https://user-images.githubusercontent.com/89173987/144359956-6cea1076-c5d7-4371-b7c5-ad3968ffef31.jpg)
+    ![7](https://user-images.githubusercontent.com/89173987/144359958-9294af9c-8f7e-454d-b344-5310119f5fd4.jpg)
+    ![8](https://user-images.githubusercontent.com/89173987/144359960-236ef76b-701a-4239-a9dc-82380e4962e6.jpg)
     ※unityのバージョンは2020.3.18f1を指定。
 8. ゲームを置く場所を指定するウィンドウが開くので、なるべくunityとは離れた場所(ディレクトリまたはフォルダ)に指定する。
     ※指定する場所のパスに全角が入ってないものを選ぶ。
 9. Buildしたフォルダ内に3つのファイルが入っていることを確認する。
-    ![9](https://user-images.githubusercontent.com/89173987/143883435-82965483-4442-45ea-85dc-a1e9a4426501.jpg)
+    ![9](https://user-images.githubusercontent.com/89173987/144360082-62c99b6e-eefa-4c40-95d7-cbb0585c9c60.jpg)
 10. githubに適当にリポジトリを作る。
-    ![10](https://user-images.githubusercontent.com/89173987/143883439-e9f5b86b-1562-4437-bbb4-1ad08eeb31dd.jpg)
-    ![11](https://user-images.githubusercontent.com/89173987/143883659-b49efc69-59b3-4ab7-9f95-b0a7026b86b8.jpg)
+    ![10](https://user-images.githubusercontent.com/89173987/144360087-603c2ece-8cbf-4947-88cb-b7d510df4c9e.jpg)
+    ![11](https://user-images.githubusercontent.com/89173987/144360089-e2d43fe2-3eac-4569-84e3-276fa1e71a90.jpg)
 11. リポジトリでAdd fileのUpload filesをクリックし、先ほどの3つのファイルをドラッグ&ドロップし、コミットする。
     (Desktop.data.unitywebはデータ容量が大きくgithubにアップロードできないため、Onedrive上に置く)
 12. githubを閉じる。
 13. ブラウザでNetlifyを開く。
 14. ログイン画面が出るので、githubアカウントでログインする。
-    ![12](https://user-images.githubusercontent.com/89173987/143883662-54a127a3-7be4-4289-a476-5822a1aed616.jpg)
+    ![12](https://user-images.githubusercontent.com/89173987/144360090-3b2e276f-e6f7-4beb-86ff-e267fbc4c8d1.jpg)
 15. New site from Gitをクリックし、GitHubを選択する。
-    ![13](https://user-images.githubusercontent.com/89173987/143883688-a70301d5-13d8-41ea-8b24-2a6aeed00cd1.jpg)
-    ![14](https://user-images.githubusercontent.com/89173987/143883693-967cd8d0-1f8b-4433-801b-fa113489242e.jpg)
+    ![13](https://user-images.githubusercontent.com/89173987/144360097-f31301ab-2229-4900-852a-263cf5a74c75.jpg)
+    ![14](https://user-images.githubusercontent.com/89173987/144360101-0d8048ea-278e-4c2d-bf17-5bff347de95d.jpg)
 16. Buildしたファイルが入ったリポジトリを選択する。
-    ![15](https://user-images.githubusercontent.com/89173987/143883698-b98ccf14-3b9e-4232-88f4-e083890ccc45.jpg)
+    ![15](https://user-images.githubusercontent.com/89173987/144360104-9e3d1768-3976-45aa-9342-3a75c15e7779.jpg)
 17. Deploy siteをクリックする。
 18. サイトが作成されたことを確認し、そのURLにアクセスするとゲームができる。
-    ![17](https://user-images.githubusercontent.com/89173987/143883709-604fc08d-5c67-4cef-a4d7-80e203e81f25.jpg)
+    ![17](https://user-images.githubusercontent.com/89173987/144360108-439a59f0-5bd4-440e-94cb-27d7038f619b.jpg)
     ![title](https://user-images.githubusercontent.com/89173987/143883724-bc29719b-df47-4ba0-92d4-7ecaa548351f.jpg)
 
 # ユーザマニュアル
