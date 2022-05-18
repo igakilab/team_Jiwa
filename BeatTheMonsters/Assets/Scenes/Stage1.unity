@@ -637,6 +637,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranking
       objectReference: {fileID: 0}
+    - target: {fileID: 7043164151878865250, guid: 4170ae20069d0394080ed6a17542a8ef, type: 3}
+      propertyPath: clientKey
+      value: 07a9dc27e121e9e53f1c826afdc01b2e34d38a376d1b30fa3ce19c8bafd1a91f
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043164151878865250, guid: 4170ae20069d0394080ed6a17542a8ef, type: 3}
+      propertyPath: applicationKey
+      value: a88ae2288bc6b2777a40c98547dc6815587485c6763f300f972477fa4710c541
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4170ae20069d0394080ed6a17542a8ef, type: 3}
 --- !u!1 &901310720
